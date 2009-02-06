@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Peg-E
+GenericName=Peg Elimination Game
+Exec=pege
+Icon=pege
+Terminal=false
+Type=Application
+Terminal=false
+Categories=Qt;KDE;Game;BoardGame;
