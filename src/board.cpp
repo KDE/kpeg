@@ -221,7 +221,7 @@ void Board::showMessage() {
 		m_message->showMessage(i18n("You have lost."), KGamePopupItem::TopLeft);
 		break;
 	case 2:
-		m_message->showMessage(i18n("Congratulatons, you have won!"), KGamePopupItem::TopLeft);
+		m_message->showMessage(i18n("Congratulations, you have won!"), KGamePopupItem::TopLeft);
 		break;
 	default:
 		break;
