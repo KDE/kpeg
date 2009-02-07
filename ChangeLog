@@ -1,3 +1,6 @@
+2009-02-07 Graeme Gott <graeme@gottcode.org>
+	* Use transparent rectangles to position items.
+
 2009-02-04 Graeme Gott <graeme@gottcode.org>
 	* Show algorithm in statusbar.
 	* Add line puzzle generation algorithm.

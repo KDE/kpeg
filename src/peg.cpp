@@ -31,9 +31,9 @@ Peg::Peg(const QPoint& hole, Board* board, QGraphicsItem* parent)
   m_board(board) {
 	setElementId("peg");
 	setZValue(2);
-	setPos(m_hole.x() * 20, m_hole.y() * 20);
 	setFlag(QGraphicsItem::ItemIsMovable, true);
 	setCursor(Qt::OpenHandCursor);
+	move(m_hole);
 }
 
 /*****************************************************************************/
@@ -59,7 +59,7 @@ void Peg::mousePressEvent(QGraphicsSceneMouseEvent* event) {
 void Peg::mouseReleaseEvent(QGraphicsSceneMouseEvent* event) {
 	showAvailableHoles(false);
 
-	QPoint hole = ((mapToScene(boundingRect().center()) / 20.f) - QPointF(0.5f, 0.5f)).toPoint();
+	QPoint hole = ((mapToScene(boundingRect().center()) / 22.f) - QPointF(0.5f, 0.5f)).toPoint();
 	if (m_holes.contains(hole)) {
 		m_board->move(m_hole, hole);
 	}
@@ -78,7 +78,7 @@ void Peg::mouseReleaseEvent(QGraphicsSceneMouseEvent* event) {
 
 void Peg::move(QPoint hole) {
 	m_hole = hole;
-	setPos(m_hole.x() * 20, m_hole.y() * 20);
+	setPos(m_hole.x() * 22, m_hole.y() * 22);
 }
 
 /*****************************************************************************/

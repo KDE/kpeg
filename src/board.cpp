@@ -109,7 +109,7 @@ void Board::generate(int seed, int difficulty, int algorithm) {
 	puzzle->generate(seed, difficulty);
 
 	// Create scene
-	setSceneRect(QRectF(puzzle->position() * 20, puzzle->size() * 20).adjusted(-10,-10,10,10));
+	setSceneRect(QRectF(puzzle->position() * 22, puzzle->size() * 22).adjusted(-10,-10,10,10));
 	fitInView(sceneRect(), Qt::KeepAspectRatio);
 
 	QHash<QPoint, bool> holes = puzzle->holes();

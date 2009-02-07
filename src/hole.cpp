@@ -27,7 +27,7 @@ Hole::Hole(const QPoint& position, QGraphicsItem* parent)
   m_peg(0) {
 	setElementId("hole");
 	setZValue(1);
-	setPos(position.x() * 20 + 1, position.y() * 20 + 1);
+	setPos(position.x() * 22, position.y() * 22);
 	setFlag(QGraphicsItem::ItemIsMovable, false);
 }
 
