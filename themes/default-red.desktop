@@ -1,7 +1,13 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default - Red
+Name[ga]=Réamhshocrú - Dearg
+Name[sv]=Standard - Röd
+Name[uk]=Типова — Червона
 Description=Default theme with red pegs
+Description[ga]=Téama réamhshocraithe le pionnaí dearga
+Description[sv]=Standardtema med röda pjäser
+Description[uk]=Типова тема з червоними фішками
 FileName=default-red.svgz
 Author=Graeme Gott
 AuthorEmail=graeme@gottcode.org

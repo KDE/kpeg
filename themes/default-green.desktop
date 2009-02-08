@@ -1,7 +1,13 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default - Green
+Name[ga]=Réamhshocrú - Uaine
+Name[sv]=Standard - Grön
+Name[uk]=Типова — Зелена
 Description=Default theme with green pegs
+Description[ga]=Téama réamhshocraithe le pionnaí uaine
+Description[sv]=Standardtema med gröna pjäser
+Description[uk]=Типова тема з зеленими фішками
 FileName=default-green.svgz
 Author=Graeme Gott
 AuthorEmail=graeme@gottcode.org

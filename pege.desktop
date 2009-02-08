@@ -1,6 +1,9 @@
 [Desktop Entry]
 Name=Peg-E
+Name[sv]=Pjäs-E
 GenericName=Peg Elimination Game
+GenericName[sv]=Pjäselimineringsspel
+GenericName[uk]=Гра в усування фішок
 Exec=pege
 Icon=pege
 Terminal=false

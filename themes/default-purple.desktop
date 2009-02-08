@@ -1,7 +1,13 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default - Purple
+Name[ga]=Réamhshocrú - Corcra
+Name[sv]=Standard - Violett
+Name[uk]=Типова — Пурпурова
 Description=Default theme with purple pegs
+Description[ga]=Téama réamhshocraithe le pionnaí corcra
+Description[sv]=Standardtema med violetta pjäser
+Description[uk]=Типова тема з пурпуровими фішками
 FileName=default-purple.svgz
 Author=Graeme Gott
 AuthorEmail=graeme@gottcode.org
