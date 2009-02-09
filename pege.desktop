@@ -2,6 +2,8 @@
 Name=Peg-E
 Name[sv]=Pjäs-E
 GenericName=Peg Elimination Game
+GenericName[pt]=Jogo de Eliminação de Pinos
+GenericName[pt_BR]=Jogo de Eliminação de Pinos
 GenericName[sv]=Pjäselimineringsspel
 GenericName[uk]=Гра в усування фішок
 Exec=pege

@@ -2,10 +2,14 @@
 VersionFormat=1
 Name=Default - Green
 Name[ga]=Réamhshocrú - Uaine
+Name[pt]=Predefinição - Verde
+Name[pt_BR]=Predefinição - Verde
 Name[sv]=Standard - Grön
 Name[uk]=Типова — Зелена
 Description=Default theme with green pegs
 Description[ga]=Téama réamhshocraithe le pionnaí uaine
+Description[pt]=O tema predefinido com pinos verdes
+Description[pt_BR]=O tema predefinido com pinos verdes
 Description[sv]=Standardtema med gröna pjäser
 Description[uk]=Типова тема з зеленими фішками
 FileName=default-green.svgz

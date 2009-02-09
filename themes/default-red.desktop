@@ -2,10 +2,14 @@
 VersionFormat=1
 Name=Default - Red
 Name[ga]=Réamhshocrú - Dearg
+Name[pt]=Predefinição - Vermelho
+Name[pt_BR]=Predefinição - Vermelho
 Name[sv]=Standard - Röd
 Name[uk]=Типова — Червона
 Description=Default theme with red pegs
 Description[ga]=Téama réamhshocraithe le pionnaí dearga
+Description[pt]=O tema predefinido com pinos vermelhos
+Description[pt_BR]=O tema predefinido com pinos vermelhos
 Description[sv]=Standardtema med röda pjäser
 Description[uk]=Типова тема з червоними фішками
 FileName=default-red.svgz

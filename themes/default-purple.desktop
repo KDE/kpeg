@@ -2,10 +2,14 @@
 VersionFormat=1
 Name=Default - Purple
 Name[ga]=Réamhshocrú - Corcra
+Name[pt]=Predefinição - Púrpura
+Name[pt_BR]=Predefinição - Púrpura
 Name[sv]=Standard - Violett
 Name[uk]=Типова — Пурпурова
 Description=Default theme with purple pegs
 Description[ga]=Téama réamhshocraithe le pionnaí corcra
+Description[pt]=O tema predefinido com pinos púrpuras
+Description[pt_BR]=O tema predefinido com pinos púrpuras
 Description[sv]=Standardtema med violetta pjäser
 Description[uk]=Типова тема з пурпуровими фішками
 FileName=default-purple.svgz
