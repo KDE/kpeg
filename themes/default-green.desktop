@@ -1,12 +1,14 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default - Green
+Name[et]=Vaikimisi - roheline
 Name[ga]=Réamhshocrú - Uaine
 Name[pt]=Predefinição - Verde
 Name[pt_BR]=Predefinição - Verde
 Name[sv]=Standard - Grön
 Name[uk]=Типова — Зелена
 Description=Default theme with green pegs
+Description[et]=Vaikimisi teema roheliste pulkadega
 Description[ga]=Téama réamhshocraithe le pionnaí uaine
 Description[pt]=O tema predefinido com pinos verdes
 Description[pt_BR]=O tema predefinido com pinos verdes

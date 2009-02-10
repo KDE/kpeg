@@ -1,12 +1,14 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default - Red
+Name[et]=Vaikimisi - punane
 Name[ga]=Réamhshocrú - Dearg
 Name[pt]=Predefinição - Vermelho
 Name[pt_BR]=Predefinição - Vermelho
 Name[sv]=Standard - Röd
 Name[uk]=Типова — Червона
 Description=Default theme with red pegs
+Description[et]=Vaikimisi teema punaste pulkadega
 Description[ga]=Téama réamhshocraithe le pionnaí dearga
 Description[pt]=O tema predefinido com pinos vermelhos
 Description[pt_BR]=O tema predefinido com pinos vermelhos
