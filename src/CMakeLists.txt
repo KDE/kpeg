@@ -16,7 +16,7 @@ kde4_add_kcfg_files(pege_SRCS settings.kcfgc)
 
 kde4_add_executable(pege ${pege_SRCS})
 
-target_link_libraries(pege kdegames ${KDE4_KDEUI_LIBS})
+target_link_libraries(pege ${KDEGAMES_LIBRARY} ${KDE4_KDEUI_LIBS})
 
 install(TARGETS pege ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES pege.kcfg DESTINATION ${KCFG_INSTALL_DIR})
