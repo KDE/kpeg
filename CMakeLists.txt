@@ -1,6 +1,8 @@
 project(pege)
 
 find_package(KDE4 REQUIRED)
+find_package(LibKDEGames REQUIRED)
+include(KDE4Defaults)
 
 add_subdirectory(themes)
 add_subdirectory(icons)

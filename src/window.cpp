@@ -43,6 +43,8 @@
 #include <QSpinBox>
 #include <QVBoxLayout>
 
+#include <ctime>
+
 /*****************************************************************************/
 
 Window::Window(QWidget* parent)

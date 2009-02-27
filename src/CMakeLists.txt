@@ -1,6 +1,6 @@
 project(pege)
 
-include_directories(${KDE4_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${KDE4_INCLUDES} ${KDEGAMES_INCLUDE_DIR})
 
 set(pege_SRCS
 	board.cpp
