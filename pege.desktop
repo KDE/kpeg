@@ -10,7 +10,6 @@ GenericName[sv]=Pjäselimineringsspel
 GenericName[uk]=Гра в усування фішок
 Exec=pege
 Icon=pege
-Terminal=false
 Type=Application
 Terminal=false
 Categories=Qt;KDE;Game;BoardGame;

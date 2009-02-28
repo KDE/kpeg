@@ -184,7 +184,7 @@ void Window::loadGame() {
 
 	// Load moves
 	QRegExp parse("(-?\\d+)x(-?\\d+):(-?\\d+)x(-?\\d+)");
-	foreach (QString move, moves) {
+	foreach (const QString& move, moves) {
 		if (!parse.exactMatch(move)) {
 			continue;
 		}
