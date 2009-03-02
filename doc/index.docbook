@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+  <!ENTITY pege "<application>Peg-E</application>">
+  <!ENTITY kappname "&pege;">
+  <!ENTITY kappversion "1.0.80">
+  <!ENTITY package "kdegames">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE">
+]>
+
+<book lang="&language;">
+	<bookinfo>
+		<title>The &pege; Handbook</title>
+
+		<authorgroup>
+			<author>
+				<personname>
+					<firstname>Graeme</firstname>
+					<surname>Gott</surname>
+				</personname>
+				<email>graeme@gottcode.org</email>
+			</author>
+			<!-- TRANS:ROLES_OF_TRANSLATORS -->
+		</authorgroup>
+
+		<copyright>
+			<year>2009</year>
+			<holder>Graeme Gott</holder>
+		</copyright>
+
+		<legalnotice>&FDLNotice;</legalnotice>
+
+		<date>2009-03-01</date>
+		<releaseinfo>1.0.80</releaseinfo>
+
+		<abstract>
+			<para>
+				This documentation describes the game of &pege; version &kappversion;
+			</para>
+		</abstract>
+
+		<keywordset>
+			<keyword>KDE</keyword>
+			<keyword>kdegames</keyword>
+			<keyword>game</keyword>
+			<keyword>Peg-E</keyword>
+			<keyword>board</keyword>
+		</keywordset>
+
+	</bookinfo>
+
+	<chapter id="introduction">
+		<title>Introduction</title>
+		<para>
+			&pege; is a peg elimination game. The object of the game is to remove all but one peg from the board.
+		</para>
+	</chapter>
+
+	<chapter id="how-to-play">
+		<title>How To Play</title>
+		<para>
+			The player is presented with a board of holes containing pegs. The player moves by jumping a peg over another peg into an empty hole; the jumped peg is removed from the board. The game is over when no more pegs can be removed.
+		</para>
+	</chapter>
+
+	<chapter id="configuration">
+		<title>Game Configuration</title>
+		<para>
+			The &pege; configuration dialog allows you to select visual themes for &pege;.
+		</para>
+		<para>
+			To select a new theme simply choose the theme's name from the selection list.
+		</para>
+		<note>
+			<title>Note:</title>
+			<para>
+				For your convenience a quick preview screenshot will be displayed on the right hand sided of the selection list as soon as you select the theme you are interested in.
+			</para>
+		</note>
+		<para>
+			Once you are satisfied with the theme you have selected you can either click the <guibutton>Apply</guibutton>, or simply click the <guibutton>Ok</guibutton> button, located at the bottom part of this dialog.
+		</para>
+		<para>
+			If, however you are dissatisfied with your selection – simply click <guimenu>Cancel</guimenu> to discard the changes.
+		</para>
+	</chapter>
+
+	<chapter id="credits">
+		<title>Credits and License</title>
+		<para>&pege;</para>
+		<para>
+			Program copyright 2009 Graeme Gott <email>graeme@gottcode.org</email>
+		</para>
+		<para>
+			Documentation Copyright &copy; 2009 Graeme Gott <email>graeme@gottcode.org</email>
+		</para>
+
+		<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+		&underFDL;
+
+		&underGPL;
+
+	</chapter>
+
+	<appendix id="installation">
+		<title>Installation</title>
+
+		&install.intro.documentation;
+
+		&install.compile.documentation;
+
+	</appendix>
+
+</book>
