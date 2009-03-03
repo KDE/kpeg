@@ -2,7 +2,6 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY pege "<application>Peg-E</application>">
   <!ENTITY kappname "&pege;">
-  <!ENTITY kappversion "1.0.80">
   <!ENTITY package "kdegames">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE">
@@ -35,7 +34,7 @@
 
 		<abstract>
 			<para>
-				This documentation describes the game of &pege; version &kappversion;
+				&pege; is a peg elimination game.
 			</para>
 		</abstract>
 
