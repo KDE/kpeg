@@ -30,6 +30,7 @@ Description[pt]=Tema predefinido do Peg-E
 Description[pt_BR]=Tema padrão para o Peg-E
 Description[sv]=Standardtema för Pjäs-E
 Description[uk]=Типова тема для Peg-E
+Description[x-test]=xxDefault theme for Peg-Exx
 FileName=default.svgz
 Author=Graeme Gott
 AuthorEmail=graeme@gottcode.org

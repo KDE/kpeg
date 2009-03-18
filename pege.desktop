@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Peg-E
 Name[sv]=Pjäs-E
+Name[x-test]=xxPeg-Exx
 GenericName=Peg Elimination Game
 GenericName[et]=Nupukeste likvideerimise mäng
 GenericName[nds]=Splinten wegdoon
@@ -8,6 +9,7 @@ GenericName[pt]=Jogo de Eliminação de Pinos
 GenericName[pt_BR]=Jogo de eliminação Resta um
 GenericName[sv]=Pjäselimineringsspel
 GenericName[uk]=Гра в усування фішок
+GenericName[x-test]=xxPeg Elimination Gamexx
 Exec=pege
 Icon=pege
 Type=Application
