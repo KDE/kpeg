@@ -1,10 +1,12 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default - Red
+Name[de]=Standard - Rot
 Name[et]=Vaikimisi - punane
 Name[fr]=Rouge par défaut
 Name[ga]=Réamhshocrú - Dearg
 Name[gl]=Predeterminado, vermello
+Name[km]=លំនាំដើម - ក្រហម
 Name[nds]=Standard - Root
 Name[pt]=Predefinição - Vermelho
 Name[pt_BR]=Padrão - vermelho
@@ -16,6 +18,7 @@ Description=Default theme with red pegs
 Description[et]=Vaikimisi teema punaste nupukestega
 Description[ga]=Téama réamhshocraithe le pionnaí dearga
 Description[gl]=Tema predeterminado con estacas vermellas
+Description[km]=ស្បែក​លំនាំដើម​ដែល​មាន pegs ក្រហម
 Description[nds]=Standardmuster mit root Splinten
 Description[pt]=O tema predefinido com pinos vermelhos
 Description[pt_BR]=Tema padrão com peças vermelhas
