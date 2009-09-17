@@ -1,8 +1,22 @@
 [Desktop Entry]
 Name=Peg-E
+Name[de]=Peg-E
+Name[en_GB]=Peg-E
+Name[et]=Peg-E
+Name[fr]=Peg-E
+Name[ga]=Peg-E
+Name[gl]=Peg-E
+Name[it]=Peg-E
+Name[km]=Peg-E
+Name[nds]=Peg-E
+Name[pt]=Peg-E
+Name[pt_BR]=Peg-E
 Name[sv]=Pjäs-E
+Name[tr]=Peg-E
+Name[uk]=Peg-E
 Name[x-test]=xxPeg-Exx
 GenericName=Peg Elimination Game
+GenericName[en_GB]=Peg Elimination Game
 GenericName[et]=Nupukeste likvideerimise mäng
 GenericName[fr]=Jeu d'élimination Peg
 GenericName[gl]=Xogo de eliminación de estacas

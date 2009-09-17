@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default - Purple
+Name[en_GB]=Default - Purple
 Name[et]=Vaikimisi - purpur
 Name[fr]=Violet par défaut
 Name[ga]=Réamhshocrú - Corcra
@@ -15,6 +16,7 @@ Name[tr]=Öntanımlı - Mor
 Name[uk]=Типова — Пурпурова
 Name[x-test]=xxDefault - Purplexx
 Description=Default theme with purple pegs
+Description[en_GB]=Default theme with purple pegs
 Description[et]=Vaikimisi teema purpursete nupukestega
 Description[fr]=Thème par défaut avec des chevilles violettes
 Description[ga]=Téama réamhshocraithe le pionnaí corcra

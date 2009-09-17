@@ -2,6 +2,7 @@
 VersionFormat=1
 Name=Default - Red
 Name[de]=Standard - Rot
+Name[en_GB]=Default - Red
 Name[et]=Vaikimisi - punane
 Name[fr]=Rouge par défaut
 Name[ga]=Réamhshocrú - Dearg
@@ -16,6 +17,7 @@ Name[tr]=Öntanımlı - Kırmızı
 Name[uk]=Типова — Червона
 Name[x-test]=xxDefault - Redxx
 Description=Default theme with red pegs
+Description[en_GB]=Default theme with red pegs
 Description[et]=Vaikimisi teema punaste nupukestega
 Description[fr]=Thème par défaut avec des chevilles rouges
 Description[ga]=Téama réamhshocraithe le pionnaí dearga
