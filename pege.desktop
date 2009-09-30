@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Peg-E
 Name[de]=Peg-E
+Name[el]=Πάσσαλος-E
 Name[en_GB]=Peg-E
 Name[et]=Peg-E
 Name[fr]=Peg-E
@@ -16,6 +17,7 @@ Name[tr]=Peg-E
 Name[uk]=Peg-E
 Name[x-test]=xxPeg-Exx
 GenericName=Peg Elimination Game
+GenericName[el]=Παιχνίδι Αποβολής Πασσάλων
 GenericName[en_GB]=Peg Elimination Game
 GenericName[et]=Nupukeste likvideerimise mäng
 GenericName[fr]=Jeu d'élimination Peg

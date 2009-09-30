@@ -2,6 +2,7 @@
 VersionFormat=1
 Name=Default - Purple
 Name[de]=Standard - Lila
+Name[el]=Προκαθορισμένο - Πορφυρό
 Name[en_GB]=Default - Purple
 Name[et]=Vaikimisi - purpur
 Name[fr]=Violet par défaut
@@ -17,6 +18,7 @@ Name[tr]=Öntanımlı - Mor
 Name[uk]=Типова — Пурпурова
 Name[x-test]=xxDefault - Purplexx
 Description=Default theme with purple pegs
+Description[el]=Προεπιλεγμένο θέμα με πορφυρούς πασσάλους
 Description[en_GB]=Default theme with purple pegs
 Description[et]=Vaikimisi teema purpursete nupukestega
 Description[fr]=Thème par défaut avec des chevilles violettes

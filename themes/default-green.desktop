@@ -2,6 +2,7 @@
 VersionFormat=1
 Name=Default - Green
 Name[de]=Standard - Grün
+Name[el]=Προκαθορισμένο -Πράσινο
 Name[en_GB]=Default - Green
 Name[et]=Vaikimisi - roheline
 Name[fr]=Vert par défaut
@@ -17,6 +18,7 @@ Name[tr]=Öntanımlı - Yeşil
 Name[uk]=Типова — Зелена
 Name[x-test]=xxDefault - Greenxx
 Description=Default theme with green pegs
+Description[el]=Προκαθορισμένο θέμα με πράσινους πασσάλους
 Description[en_GB]=Default theme with green pegs
 Description[et]=Vaikimisi teema roheliste nupukestega
 Description[fr]=Thème par défaut avec des chevilles vertes
