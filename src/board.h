@@ -23,6 +23,7 @@
 
 #include <QGraphicsView>
 #include <QHash>
+
 class KGamePopupItem;
 class KSvgRenderer;
 class KUndoStack;
@@ -34,81 +35,88 @@ class Peg;
  *
  * This class controls all of the game objects, as well as setting the theme.
  */
-class Board : public QGraphicsView {
+class Board : public QGraphicsView
+{
+    Q_OBJECT
 public:
-	/**
-	 * Constructs a new game board.
-	 *
-	 * @param moves Where to store the history of peg movements.
-	 * @param parent The game board's parent widget.
-	 */
-	explicit Board(KUndoStack* moves, QWidget* parent = 0);
+    /**
+    * Constructs a new game board.
+    *
+    * @param moves Where to store the history of peg movements.
+    * @param parent The game board's parent widget.
+    */
+    explicit Board(KUndoStack* moves, QWidget* parent = 0);
 
-	/**
-	 * Returns true if there is only one peg left; otherwise returns false.
-	 */
-	bool isFinished() const {
-		return m_status;
-	}
+    /**
+    * Returns true if there is only one peg left; otherwise returns false.
+    */
+    bool isFinished() const {
+        return m_status;
+    }
 
-	/**
-	 * Returns true if @p hole is an empty hole.
-	 *
-	 * @param hole The hole to check.
-	 */
-	bool isHole(const QPoint& hole) const;
+    /**
+    * Returns true if @p hole is an empty hole.
+    *
+    * @param hole The hole to check.
+    */
+    bool isHole(const QPoint& hole) const;
 
-	/**
-	 * Returns true if @p hole has a peg.
-	 *
-	 * @param hole The hole to check.
-	 */
-	bool isPeg(const QPoint& hole) const;
+    /**
+    * Returns true if @p hole has a peg.
+    *
+    * @param hole The hole to check.
+    */
+    bool isPeg(const QPoint& hole) const;
 
-	/**
-	 * Returns the hole specified by @p hole.
-	 *
-	 * @param hole The hole to fetch.
-	 */
-	Hole* hole(const QPoint& hole) const;
+    /**
+    * Returns the hole specified by @p hole.
+    *
+    * @param hole The hole to fetch.
+    */
+    Hole* hole(const QPoint& hole) const;
 
-	/**
-	 * Creates a new puzzle layout.
-	 *
-	 * @param seed The seed passed to the random number generator.
-	 * @param difficulty How hard of a layout to create.
-	 */
-	void generate(int seed, int difficulty, int algorithm);
+    /**
+    * Creates a new puzzle layout.
+    *
+    * @param seed The seed passed to the random number generator.
+    * @param difficulty How hard of a layout to create.
+    */
+    void generate(int seed, int difficulty, int algorithm);
 
-	/**
-	 * Moves a peg from @p ole_hole to @p new_hole.
-	 *
-	 * @param old_hole The source hole.
-	 * @param new_hole The destination hole.
-	 */
-	void move(const QPoint& old_hole, const QPoint& new_hole);
+    /**
+    * Moves a peg from @p ole_hole to @p new_hole.
+    *
+    * @param old_hole The source hole.
+    * @param new_hole The destination hole.
+    */
+    void move(const QPoint& old_hole, const QPoint& new_hole);
 
-	/**
-	 * Changes the appearance of the board.
-	 *
-	 * @param theme The theme to use.
-	 */
-	void setTheme(const QString& theme);
+    /**
+    * Changes the appearance of the board.
+    *
+    * @param theme The theme to use.
+    */
+    void setTheme(const QString& theme);
+    void setGamePaused(bool paused);
+
+signals:
+    void countChanged(int);
 
 protected:
-	virtual void drawBackground(QPainter* painter, const QRectF& rect);
-	virtual void resizeEvent(QResizeEvent* event);
+    virtual void drawBackground(QPainter* painter, const QRectF& rect);
+    virtual void resizeEvent(QResizeEvent* event);
 
 private:
-	bool checkFinished();
-	void showMessage();
+    bool checkFinished();
+    void showMessage();
 
 private:
-	QHash<QPoint, Hole*> m_holes;
-	int m_status;
-	KUndoStack* m_moves;
-	KGamePopupItem* m_message;
-	KSvgRenderer* m_theme;
+    QHash<QPoint, Hole*> m_holes;
+    int m_status;
+    KUndoStack* m_moves;
+    KGamePopupItem* m_message;
+    KSvgRenderer* m_theme;
+    Peg* m_peg;
 };
 
 #endif // PEGE_BOARD_H

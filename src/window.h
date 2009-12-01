@@ -18,44 +18,52 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PEGE_WINDOW_H
-#define PEGE_WINDOW_H
+#ifndef PEGE_MAIN_WINDOW_H
+#define PEGE_MAIN_WINDOW_H
 
 #include <KXmlGuiWindow>
+#include <KGameDifficulty>
+
 class KUndoStack;
 class Board;
+class KGameClock;
+class KToggleAction;
 
-/**
- * @brief The main window of the game.
- */
-class Window : public KXmlGuiWindow {
-	Q_OBJECT
+
+class PegeMainWindow : public KXmlGuiWindow
+{
+    Q_OBJECT
 public:
-	/**
-	 * Creates the window.
-	 */
-	Window(QWidget* parent = 0);
 
-	/**
-	 * Destroys the window.
-	 */
-	~Window();
+    PegeMainWindow(QWidget* parent = 0);
+    ~PegeMainWindow();
 
 private slots:
-	void newGame();
-	void restartGame();
-	void configureSettings();
-	void loadSettings();
+    void newGame();
+    void restartGame();
+    void configureSettings();
+    void loadSettings();
+    void updateTimer(const QString&);
+    void pauseGame(bool paused);
+    void updateMoves(int count);
+    void levelChanged(KGameDifficulty::standardLevel);
+    void showHighscores();
 
 private:
-	void loadGame();
-	void startGame(int seed, int difficulty, int algorithm);
+    void loadGame();
+    void startGame(int);
+    void setupActions();
 
-	Board* m_board;
-	int m_seed;
-	int m_difficulty;
-	int m_algorithm;
-	KUndoStack* m_moves;
+    Board* m_board;
+
+    KUndoStack* m_moves;
+    KGameClock* m_gameClock;
+    KToggleAction* m_actionPause;
+
+    int m_seed;
+    int m_difficulty;
+    int m_algorithm;
+
 };
 
-#endif // PEGE_WINDOW_H
+#endif // PEGE_MAIN_WINDOW_H

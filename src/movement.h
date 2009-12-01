@@ -24,6 +24,7 @@
 #include <QHash>
 #include <QPoint>
 #include <QUndoCommand>
+
 class Board;
 class Hole;
 class Peg;
@@ -31,34 +32,31 @@ class Peg;
 /**
  * @brief A movement of a peg.
  */
-class Movement : public QUndoCommand {
+class Movement : public QUndoCommand
+{
 public:
-	/**
-	 * Constructs a movement.
-	 *
-	 * @param start_hole The hole the peg jumped from.
-	 * @param end_hole The hole the peg jumped to.
-	 * @param board The board that contains the holes.
-	 */
-	Movement(const QPoint& start_hole, const QPoint& end_hole, Board* board);
+    /**
+     * Constructs a movement.
+     *
+     * @param start_hole The hole the peg jumped from.
+     * @param end_hole The hole the peg jumped to.
+     * @param board The board that contains the holes.
+    */
+    Movement(const QPoint& start_hole, const QPoint& end_hole, Board* board);
 
-	/**
-	 * Move the peg from the start hole to the end hole, removing the peg in the hole between them.
-	 */
-	virtual void redo();
+    // Move the peg from the start hole to the end hole, removing the peg in the hole between them.
+    virtual void redo();
 
-	/**
-	 * Move the peg from the end hole to the start hole, restoring the peg in the hole between them.
-	 */
-	virtual void undo();
+    // Move the peg from the end hole to the start hole, restoring the peg in the hole between them.
+    virtual void undo();
 
 private:
-	Peg* m_peg;
-	Peg* m_jumped_peg;
-	QPoint m_start_hole;
-	QPoint m_jumped_hole;
-	QPoint m_end_hole;
-	Board* m_board;
+    Peg* m_peg;
+    Peg* m_jumped_peg;
+    QPoint m_start_hole;
+    QPoint m_jumped_hole;
+    QPoint m_end_hole;
+    Board* m_board;
 };
 
 #endif // PEGE_MOVEMENT_H

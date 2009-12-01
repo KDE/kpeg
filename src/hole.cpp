@@ -20,21 +20,18 @@
 
 #include "hole.h"
 
-/*****************************************************************************/
-
 Hole::Hole(const QPoint& position, QGraphicsItem* parent)
-: QGraphicsSvgItem(parent),
-  m_peg(0) {
-	setElementId("hole");
-	setZValue(1);
-	setPos(position.x() * 22, position.y() * 22);
-	setFlag(QGraphicsItem::ItemIsMovable, false);
+        : QGraphicsSvgItem(parent),
+        m_peg(0)
+{
+    setElementId("hole");
+    setZValue(1);
+    setPos(position.x() * 22, position.y() * 22);
+    setFlag(QGraphicsItem::ItemIsMovable, false);
 }
 
-/*****************************************************************************/
 
-void Hole::setHighlighted(bool highlight) {
-	setElementId(!highlight ? "hole" : "highlight");
+void Hole::setHighlighted(bool highlight)
+{
+    setElementId(!highlight ? "hole" : "highlight");
 }
-
-/*****************************************************************************/

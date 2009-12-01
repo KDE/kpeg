@@ -25,46 +25,39 @@
 class Peg;
 
 /**
- * @brief A hole that can contain a peg.
- */
-class Hole : public QGraphicsSvgItem {
+* @brief A hole that can contain a peg.
+*/
+class Hole : public QGraphicsSvgItem
+{
 public:
-	/**
-	 * Constructs a hole.
-	 *
-	 * @param position The location of the hole.
-	 * @param parent The parent item of the hole.
-	 */
-	explicit Hole(const QPoint& position, QGraphicsItem* parent = 0);
+    /**
+    * Constructs a hole.
+    *
+    * @param position The location of the hole.
+    * @param parent The parent item of the hole.
+    */
+    explicit Hole(const QPoint& position, QGraphicsItem* parent = 0);
 
-	/**
-	 * Returns true if the hole has a peg.
-	 */
-	bool hasPeg() const {
-		return m_peg != 0;
-	}
+    // Returns true if the hole has a peg.
+    bool hasPeg() const {
+        return m_peg != 0;
+    }
 
-	/**
-	 * Returns the peg contained by the hole.
-	 */
-	Peg* peg() const {
-		return m_peg;
-	}
+    // Returns the peg contained by the hole.
+    Peg* peg() const {
+        return m_peg;
+    }
 
-	/**
-	 * Sets the peg contained by the hole.
-	 */
-	void setPeg(Peg* peg) {
-		m_peg = peg;
-	}
+    // Sets the peg contained by the hole.
+    void setPeg(Peg* peg) {
+        m_peg = peg;
+    }
 
-	/**
-	 * Sets the highlighted status of the hole.
-	 */
-	void setHighlighted(bool highlight);
+    // Sets the highlighted status of the hole.
+    void setHighlighted(bool highlight);
 
 private:
-	Peg* m_peg;
+    Peg* m_peg;
 };
 
 #endif // PEGE_HOLE_H

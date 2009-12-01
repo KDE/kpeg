@@ -32,20 +32,21 @@
 #include <KAboutData>
 #include <KCmdLineArgs>
 
-int main(int argc, char* argv[]) {
-	KAboutData about_data("pege", 0, ki18n("Peg-E"), "1.0.90",
-		ki18n("Peg elimination game"), KAboutData::License_GPL,
-		ki18n("Copyright &copy; 2009 Graeme Gott"), KLocalizedString(), 0,
-		"graeme@gottcode.org");
-	about_data.addAuthor(ki18n("Graeme Gott"), KLocalizedString(),
-		"graeme@gottcode.org", "http://gottcode.org/");
-	KCmdLineArgs::init(argc, argv, &about_data);
+int main(int argc, char* argv[])
+{
+    KAboutData about_data("pege", 0, ki18n("Peg-E"), "1.0.90",
+                          ki18n("Peg elimination game"), KAboutData::License_GPL,
+                          ki18n("Copyright &copy; 2009 Graeme Gott"), KLocalizedString(), 0,
+                          "graeme@gottcode.org");
+    about_data.addAuthor(ki18n("Graeme Gott"), KLocalizedString(),
+                         "graeme@gottcode.org", "http://gottcode.org/");
+    KCmdLineArgs::init(argc, argv, &about_data);
 
-	KApplication app;
-	KGlobal::locale()->insertCatalog("libkdegames");
+    KApplication app;
+    KGlobal::locale()->insertCatalog("libkdegames");
 
-	Window* window = new Window;
-	window->show();
+    PegeMainWindow* window = new PegeMainWindow;
+    window->show();
 
-	return app.exec();
+    return app.exec();
 }

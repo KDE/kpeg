@@ -19,7 +19,6 @@
 */
 
 #include "board.h"
-
 #include "hole.h"
 #include "movement.h"
 #include "peg.h"
@@ -35,197 +34,195 @@
 #include <KSvgRenderer>
 #include <KUndoStack>
 
-/*****************************************************************************/
-
-inline uint qHash(const QPoint& key) {
-	return (key.x() << 16) + key.y();
+inline uint qHash(const QPoint& key)
+{
+    return (key.x() << 16) + key.y();
 }
-
-/*****************************************************************************/
 
 Board::Board(KUndoStack* moves, QWidget* parent)
-: QGraphicsView(parent),
-  m_status(0),
-  m_moves(moves) {
-	QGraphicsScene* scene = new QGraphicsScene(this);
-	setScene(scene);
+        : QGraphicsView(parent),
+        m_status(0),
+        m_moves(moves)
+{
+    QGraphicsScene* scene = new QGraphicsScene(this);
+    setScene(scene);
+    // Load theme
+    m_theme = new KSvgRenderer(this);
+    setTheme(PegeSettings::theme());
 
-	// Load theme
-	m_theme = new KSvgRenderer(this);
-	setTheme(PegeSettings::theme());
+    m_peg = new Peg();
+    connect(m_peg, SIGNAL(movesCountChanged(int)), SIGNAL(countChanged(int)));
 
-	// Configure view
-	setCacheMode(QGraphicsView::CacheBackground);
-	setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
-	setFrameStyle(QFrame::NoFrame);
-	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	setMinimumSize(400, 400);
+    // Configure view
+    setCacheMode(QGraphicsView::CacheBackground);
+    setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
+    setFrameStyle(QFrame::NoFrame);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setMinimumSize(400, 400);
 }
 
-/*****************************************************************************/
-
-bool Board::isHole(const QPoint& hole) const {
-	return m_holes.contains(hole) ? !m_holes.value(hole)->hasPeg() : 0;
+bool Board::isHole(const QPoint& hole) const
+{
+    return m_holes.contains(hole) ? !m_holes.value(hole)->hasPeg() : 0;
 }
 
-/*****************************************************************************/
-
-bool Board::isPeg(const QPoint& hole) const {
-	return m_holes.contains(hole) ? m_holes.value(hole)->hasPeg() : 0;
+bool Board::isPeg(const QPoint& hole) const
+{
+    return m_holes.contains(hole) ? m_holes.value(hole)->hasPeg() : 0;
 }
 
-/*****************************************************************************/
-
-Hole* Board::hole(const QPoint& hole) const {
-	return m_holes.contains(hole) ? m_holes[hole] : 0;
+Hole* Board::hole(const QPoint& hole) const
+{
+    return m_holes.contains(hole) ? m_holes[hole] : 0;
 }
 
-/*****************************************************************************/
+void Board::generate(int seed, int difficulty, int algorithm)
+{
+    // Remove old puzzle
+    m_status = 0;
+    m_message = 0;
+    m_moves->clear();
+    m_holes.clear();
+    scene()->clear();
+    setInteractive(true);
 
-void Board::generate(int seed, int difficulty, int algorithm) {
-	// Remove old puzzle
-	m_status = 0;
-	m_message = 0;
-	m_moves->clear();
-	m_holes.clear();
-	scene()->clear();
-	setInteractive(true);
+    // Create puzzle
+    Puzzle* puzzle = 0;
+    switch (algorithm) {
+    case 2:
+        puzzle = new PuzzleBranch;
+        break;
+    case 3:
+        puzzle = new PuzzleLine;
+        break;
+    case 1:
+    default:
+        puzzle = new Puzzle;
+        break;
+    }
+    puzzle->generate(seed, difficulty);
 
-	// Create puzzle
-	Puzzle* puzzle = 0;
-	switch (algorithm) {
-	case 2:
-		puzzle = new PuzzleBranch;
-		break;
-	case 3:
-		puzzle = new PuzzleLine;
-		break;
-	case 1:
-	default:
-		puzzle = new Puzzle;
-		break;
-	}
-	puzzle->generate(seed, difficulty);
+    // Create scene
+    setSceneRect(QRectF(puzzle->position() * 22, puzzle->size() * 22).adjusted(-10, -10, 10, 10));
+    fitInView(sceneRect(), Qt::KeepAspectRatio);
 
-	// Create scene
-	setSceneRect(QRectF(puzzle->position() * 22, puzzle->size() * 22).adjusted(-10,-10,10,10));
-	fitInView(sceneRect(), Qt::KeepAspectRatio);
+    QHash<QPoint, bool> holes = puzzle->holes();
+    QHashIterator<QPoint, bool> i(holes);
 
-	QHash<QPoint, bool> holes = puzzle->holes();
-	QHashIterator<QPoint, bool> i(holes);
-	while (i.hasNext()) {
-		i.next();
-		QPoint position = i.key();
+    while (i.hasNext()) {
+        i.next();
+        QPoint position = i.key();
 
-		Hole* hole = new Hole(position);
-		hole->setSharedRenderer(m_theme);
-		scene()->addItem(hole);
-		m_holes.insert(position, hole);
+        Hole* hole = new Hole(position);
+        hole->setSharedRenderer(m_theme);
+        scene()->addItem(hole);
+        m_holes.insert(position, hole);
 
-		if (i.value()) {
-			Peg* peg = new Peg(position, this);
-			peg->setSharedRenderer(m_theme);
-			hole->setPeg(peg);
-			scene()->addItem(peg);
-		}
-	}
+        if (i.value()) {
+            Peg* peg = new Peg(position, this);
+            peg->setSharedRenderer(m_theme);
+            hole->setPeg(peg);
+            scene()->addItem(peg);
+        }
+    }
 
-	// Add message
-	m_message = new KGamePopupItem;
-	m_message->setMessageOpacity(0.9);
-	m_message->setMessageTimeout(0);
-	scene()->addItem(m_message);
+    // Add message
+    m_message = new KGamePopupItem;
+    m_message->setMessageOpacity(0.9);
+    m_message->setMessageTimeout(0);
+    scene()->addItem(m_message);
 
-	delete puzzle;
+    delete puzzle;
 }
 
-/*****************************************************************************/
+void Board::move(const QPoint& old_hole, const QPoint& new_hole)
+{
+    // Move peg
+    Movement* movement = new Movement(old_hole, new_hole, this);
+    m_moves->push(movement);
 
-void Board::move(const QPoint& old_hole, const QPoint& new_hole) {
-	// Move peg
-	Movement* movement = new Movement(old_hole, new_hole, this);
-	m_moves->push(movement);
+    // Handle finishing the game
+    if (checkFinished()) {
+        setInteractive(false);
+        showMessage();
+        m_moves->clear();
 
-	// Handle finishing the game
-	if (checkFinished()) {
-		setInteractive(false);
-		showMessage();
-		m_moves->clear();
-
-		// Remove saved game
-		KConfigGroup savegame = KGlobal::config()->group("Game");
-		savegame.writeEntry("Moves", QStringList());
-		if (m_status == 2) {
-			savegame.writeEntry("Seed", 0);
-		}
-	}
+        // Remove saved game
+        KConfigGroup savegame = KGlobal::config()->group("Game");
+        savegame.writeEntry("Moves", QStringList());
+        if (m_status == 2) {
+            savegame.writeEntry("Seed", 0);
+        }
+    }
 }
 
-/*****************************************************************************/
+void Board::setTheme(const QString& theme)
+{
+    KGameTheme game_theme;
+    game_theme.load(theme);
+    m_theme->load(game_theme.graphics());
 
-void Board::setTheme(const QString& theme) {
-	KGameTheme game_theme;
-	game_theme.load(theme);
-	m_theme->load(game_theme.graphics());
-
-	foreach (QGraphicsItem* item, scene()->items()) {
-		QGraphicsSvgItem* svg = qgraphicsitem_cast<QGraphicsSvgItem*>(item);
-		if (svg) {
-			svg->setCacheMode(QGraphicsItem::NoCache);
-			svg->setSharedRenderer(m_theme);
-			svg->update();
-			svg->setCacheMode(QGraphicsItem::DeviceCoordinateCache);
-		}
-	}
-	scene()->invalidate();
+    foreach(QGraphicsItem* item, scene()->items()) {
+        QGraphicsSvgItem* svg = qgraphicsitem_cast<QGraphicsSvgItem*>(item);
+        if (svg) {
+            svg->setCacheMode(QGraphicsItem::NoCache);
+            svg->setSharedRenderer(m_theme);
+            svg->update();
+            svg->setCacheMode(QGraphicsItem::DeviceCoordinateCache);
+        }
+    }
+    scene()->invalidate();
 }
 
-/*****************************************************************************/
-
-void Board::drawBackground(QPainter* painter, const QRectF& rect) {
-	if (m_theme->isValid()) {
-		m_theme->render(painter, QString("background"), rect);
-	}
+void Board::setGamePaused(bool paused)
+{
+    if (paused) {
+        m_message->showMessage(i18n("Game is paused."), KGamePopupItem::Center);
+    } else {
+        m_message->forceHide();
+    }
 }
 
-/*****************************************************************************/
-
-void Board::resizeEvent(QResizeEvent* event) {
-	fitInView(sceneRect(), Qt::KeepAspectRatio);
-	showMessage();
-	QGraphicsView::resizeEvent(event);
+void Board::drawBackground(QPainter* painter, const QRectF& rect)
+{
+    if (m_theme->isValid()) {
+        m_theme->render(painter, QString("background"), rect);
+    }
 }
 
-/*****************************************************************************/
-
-bool Board::checkFinished() {
-	int pegs = 0;
-	foreach (Hole* hole, m_holes) {
-		if (hole->hasPeg()) {
-			pegs++;
-			if (hole->peg()->canMove()) {
-				return false;
-			}
-		}
-	}
-	m_status = (pegs == 1) ? 2 : 1;
-	return true;
+void Board::resizeEvent(QResizeEvent* event)
+{
+    fitInView(sceneRect(), Qt::KeepAspectRatio);
+    showMessage();
+    QGraphicsView::resizeEvent(event);
 }
 
-/*****************************************************************************/
-
-void Board::showMessage() {
-	switch (m_status) {
-	case 1:
-		m_message->showMessage(i18n("You have lost."), KGamePopupItem::TopLeft);
-		break;
-	case 2:
-		m_message->showMessage(i18n("Congratulations, you have won!"), KGamePopupItem::TopLeft);
-		break;
-	default:
-		break;
-	}
+bool Board::checkFinished()
+{
+    int pegs = 0;
+    foreach(Hole* hole, m_holes) {
+        if (hole->hasPeg()) {
+            pegs++;
+            if (hole->peg()->canMove()) {
+                return false;
+            }
+        }
+    }
+    m_status = (pegs == 1) ? 2 : 1;
+    return true;
 }
 
-/*****************************************************************************/
+void Board::showMessage()
+{
+    switch (m_status) {
+    case 1:
+        m_message->showMessage(i18n("You have lost."), KGamePopupItem::TopLeft);
+        break;
+    case 2:
+        m_message->showMessage(i18n("Congratulations, you have won!"), KGamePopupItem::TopLeft);
+        break;
+    default:
+        break;
+    }
+}

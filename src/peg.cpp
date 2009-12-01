@@ -19,89 +19,87 @@
 */
 
 #include "peg.h"
-
 #include "board.h"
 #include "hole.h"
 
-/*****************************************************************************/
+Peg::Peg()
+{
+    count = 0;
+}
 
 Peg::Peg(const QPoint& hole, Board* board, QGraphicsItem* parent)
-: QGraphicsSvgItem(parent),
-  m_hole(hole),
-  m_board(board) {
-	setElementId("peg");
-	setZValue(2);
-	setFlag(QGraphicsItem::ItemIsMovable, true);
-	setCursor(Qt::OpenHandCursor);
-	move(m_hole);
+        : QGraphicsSvgItem(parent),
+        m_hole(hole),
+        m_board(board)
+{
+    setElementId("peg");
+    setZValue(2);
+    setFlag(QGraphicsItem::ItemIsMovable, true);
+    setCursor(Qt::OpenHandCursor);
+    move(m_hole);
 }
 
-/*****************************************************************************/
-
-bool Peg::canMove() {
-	findHoles();
-	return !m_holes.isEmpty();
+bool Peg::canMove()
+{
+    findHoles();
+    return !m_holes.isEmpty();
 }
 
-/*****************************************************************************/
+void Peg::mousePressEvent(QGraphicsSceneMouseEvent* event)
+{
+    findHoles();
+    showAvailableHoles(true);
 
-void Peg::mousePressEvent(QGraphicsSceneMouseEvent* event) {
-	findHoles();
-	showAvailableHoles(true);
-
-	setZValue(3);
-	setCursor(Qt::ClosedHandCursor);
-	QGraphicsSvgItem::mousePressEvent(event);
+    setZValue(3);
+    setCursor(Qt::ClosedHandCursor);
+    QGraphicsSvgItem::mousePressEvent(event);
 }
 
-/*****************************************************************************/
+void Peg::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
+{
+    showAvailableHoles(false);
+    count++;
+    emit movesCountChanged(count);
 
-void Peg::mouseReleaseEvent(QGraphicsSceneMouseEvent* event) {
-	showAvailableHoles(false);
+    QPoint hole = ((mapToScene(boundingRect().center()) / 22.f) - QPointF(0.5f, 0.5f)).toPoint();
+    if (m_holes.contains(hole)) {
+        m_board->move(m_hole, hole);
+    }
+    move(m_hole);
 
-	QPoint hole = ((mapToScene(boundingRect().center()) / 22.f) - QPointF(0.5f, 0.5f)).toPoint();
-	if (m_holes.contains(hole)) {
-		m_board->move(m_hole, hole);
-	}
-	move(m_hole);
+    setZValue(2);
+    if (!m_board->isFinished()) {
+        setCursor(Qt::OpenHandCursor);
+    } else {
+        unsetCursor();
+    }
 
-	setZValue(2);
-	if (!m_board->isFinished()) {
-		setCursor(Qt::OpenHandCursor);
-	} else {
-		unsetCursor();
-	}
-	QGraphicsSvgItem::mouseReleaseEvent(event);
+    QGraphicsSvgItem::mouseReleaseEvent(event);
 }
 
-/*****************************************************************************/
-
-void Peg::move(QPoint hole) {
-	m_hole = hole;
-	setPos(m_hole.x() * 22, m_hole.y() * 22);
+void Peg::move(QPoint hole)
+{
+    m_hole = hole;
+    setPos(m_hole.x() * 22, m_hole.y() * 22);
 }
 
-/*****************************************************************************/
-
-void Peg::findHoles() {
-	m_holes.clear();
-	for (int r = -1; r < 2; ++r) {
-		for (int c = -1; c < 2; ++c) {
-			QPoint direction(c, r);
-			QPoint hole = m_hole + (direction * 2);
-			if (m_board->isHole(hole) && m_board->isPeg(m_hole + direction)) {
-				m_holes.append(hole);
-			}
-		}
-	}
+void Peg::findHoles()
+{
+    m_holes.clear();
+    for (int r = -1; r < 2; ++r) {
+        for (int c = -1; c < 2; ++c) {
+            QPoint direction(c, r);
+            QPoint hole = m_hole + (direction * 2);
+            if (m_board->isHole(hole) && m_board->isPeg(m_hole + direction)) {
+                m_holes.append(hole);
+            }
+        }
+    }
 }
 
-/*****************************************************************************/
-
-void Peg::showAvailableHoles(bool show) {
-	foreach (const QPoint& hole, m_holes) {
-		m_board->hole(hole)->setHighlighted(show);
-	}
+void Peg::showAvailableHoles(bool show)
+{
+    foreach(const QPoint& hole, m_holes) {
+        m_board->hole(hole)->setHighlighted(show);
+    }
 }
-
-/*****************************************************************************/

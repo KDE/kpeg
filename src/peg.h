@@ -27,41 +27,50 @@ class Board;
 /**
  * @brief A peg movable by the player.
  */
-class Peg : public QGraphicsSvgItem {
+class Peg : public QGraphicsSvgItem
+{
+    Q_OBJECT
 public:
-	/**
-	 * Constructs a peg.
-	 *
-	 * @param hole The hole containing the peg.
-	 * @param board The board containing the peg.
-	 * @param parent The parent item of the peg.
-	 */
-	Peg(const QPoint& hole, Board* board, QGraphicsItem* parent = 0);
+    /**
+     * Constructs a peg.
+     *
+     * @param hole The hole containing the peg.
+     * @param board The board containing the peg.
+     * @param parent The parent item of the peg.
+     */
+    Peg();
+    Peg(const QPoint& hole, Board* board, QGraphicsItem* parent = 0);
 
-	/**
-	 * Returns true if the peg can move.
-	 */
-	bool canMove();
+    /**
+     * Returns true if the peg can move.
+     */
+    bool canMove();
 
-	/**
-	 * Moves the peg.
-	 *
-	 * @param hole Where to move the peg.
-	 */
-	void move(QPoint hole);
+    /**
+     * Moves the peg.
+     *
+     * @param hole Where to move the peg.
+     */
+    void move(QPoint hole);
+    int count;
+
+signals:
+    void movesCountChanged(int);
 
 protected:
-	virtual void mousePressEvent(QGraphicsSceneMouseEvent* event);
-	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event);
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent* event);
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event);
 
 private:
-	void findHoles();
-	void showAvailableHoles(bool show);
+    void findHoles();
+    void showAvailableHoles(bool show);
+
 
 private:
-	QPoint m_hole;
-	QList<QPoint> m_holes;
-	Board* m_board;
+    QPoint m_hole;
+    QList<QPoint> m_holes;
+    Board* m_board;
+
 };
 
 #endif // PEGE_PEG_H
