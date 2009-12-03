@@ -1,5 +1,8 @@
 [Desktop Entry]
 Name=KPeg
+Name[en_GB]=KPeg
+Name[uk]=KPeg
+Name[x-test]=xxKPegxx
 GenericName=Peg Elimination Game
 GenericName[el]=Παιχνίδι Αποβολής Πασσάλων
 GenericName[en_GB]=Peg Elimination Game
