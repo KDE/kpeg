@@ -23,6 +23,7 @@
 #include "board.h"
 #include "hole.h"
 
+#include <QGraphicsDropShadowEffect>
 
 Peg::Peg()
 {
@@ -40,6 +41,11 @@ Peg::Peg(const QPoint& hole, Board* board, QGraphicsItem* parent)
     setCursor(Qt::OpenHandCursor);
     move(m_hole);
     
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    effect->setOffset(3);
+    effect->setBlurRadius(8);
+    effect->setColor(Qt::black);
+    setGraphicsEffect(effect); 
 }
 
 bool Peg::canMove()
