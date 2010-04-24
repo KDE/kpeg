@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-project(pege)
+project(kpeg)
 
 find_package(KDE4 REQUIRED)
 find_package(LibKDEGames REQUIRED)
@@ -9,4 +9,4 @@ add_subdirectory(themes)
 add_subdirectory(icons)
 add_subdirectory(src)
 
-install(FILES pege.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(FILES kpeg.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
