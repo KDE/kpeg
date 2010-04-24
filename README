@@ -1,0 +1,8 @@
+KPeg is an implementation of the Peg Solitaire Game. 
+
+Peg Solitaire is a board game that consists of jumping over pieces (pegs) in order to remove them from the board. The goal is to remove all pegs but one in the shortest time possible. 
+
+Currently, KPeg has 5 leves of difficulty and 3 algorithms to generate the puzzles (Original, branch and lines), these affect how the pegs are distributed on the board. 
+
+For reference, Peg solitaire at Wikipedia:
+http://en.wikipedia.org/wiki/Peg_solitaire
