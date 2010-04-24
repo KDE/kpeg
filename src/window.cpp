@@ -1,5 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
+  Copyright 2010  Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -44,9 +45,8 @@
 #include <QFormLayout>
 #include <ctime>
 
-PegeMainWindow::PegeMainWindow(QWidget* parent)
+KpegMainWindow::KpegMainWindow(QWidget* parent)
         : KXmlGuiWindow(parent),
-        m_seed(0),
         m_difficulty(5),
         m_algorithm(1)
 {
@@ -71,7 +71,7 @@ PegeMainWindow::PegeMainWindow(QWidget* parent)
 
 }
 
-PegeMainWindow::~PegeMainWindow()
+KpegMainWindow::~KpegMainWindow()
 {
     // Save current game
     if (m_moves->count()) {
@@ -85,7 +85,7 @@ PegeMainWindow::~PegeMainWindow()
     }
 }
 
-void PegeMainWindow::setupActions()
+void KpegMainWindow::setupActions()
 {
     KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
     KStandardGameAction::restart(this, SLOT(restartGame()), actionCollection());
@@ -111,7 +111,7 @@ void PegeMainWindow::setupActions()
     KGameDifficulty::addStandardLevel(KGameDifficulty::VeryHard);
 }
 
-void PegeMainWindow::newGame()
+void KpegMainWindow::newGame()
 {
     m_gameClock->restart();
     m_gameClock->pause();
@@ -149,39 +149,39 @@ void PegeMainWindow::newGame()
     statusBar()->changeItem(i18n("Time: 00:00"), 2);
 }
 
-void PegeMainWindow::restartGame()
+void KpegMainWindow::restartGame()
 {
     if (m_board->isFinished() || KMessageBox::questionYesNo(0, i18n("Do you want to restart?")) == KMessageBox::Yes) {
-        m_board->generate(m_seed, m_difficulty, m_algorithm);
+        m_board->generate(m_difficulty, m_algorithm);
     }
     m_gameClock->restart();
     m_gameClock->resume();
 }
 
-void PegeMainWindow::configureSettings()
+void KpegMainWindow::configureSettings()
 {
     if (KConfigDialog::showDialog("settings")) {
         return;
     }
-    KConfigDialog* dialog = new KConfigDialog(this, "settings", PegeSettings::self());
-    dialog->addPage(new KGameThemeSelector(dialog, PegeSettings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "games-config-theme");
+    KConfigDialog* dialog = new KConfigDialog(this, "settings", KpegSettings::self());
+    dialog->addPage(new KGameThemeSelector(dialog, KpegSettings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "games-config-theme");
     connect(dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
     dialog->show();
 }
 
-void PegeMainWindow::loadSettings()
+void KpegMainWindow::loadSettings()
 {
-    m_board->setTheme(PegeSettings::theme());
+    m_board->setTheme(KpegSettings::theme());
+    KConfigGroup savegame = KGlobal::config()->group("Game");
 }
 
-void PegeMainWindow::loadGame()
+void KpegMainWindow::loadGame()
 {
     // Load board
     KConfigGroup savegame = KGlobal::config()->group("Game");
-    int algorithm = savegame.readEntry("Algorithm", 1);
     QStringList moves = savegame.readEntry("Moves", QStringList());
 
-    startGame(algorithm);
+    startGame(m_algorithm);
 
     // Load moves
     QRegExp parse("(-?\\d+)x(-?\\d+):(-?\\d+)x(-?\\d+)");
@@ -200,7 +200,7 @@ void PegeMainWindow::loadGame()
     }
 }
 
-void PegeMainWindow::startGame(int algorithm)
+void KpegMainWindow::startGame(int algorithm)
 {
     m_actionPause->setEnabled(true);
     m_gameClock->resume();
@@ -227,6 +227,7 @@ void PegeMainWindow::startGame(int algorithm)
 
     m_algorithm = algorithm;
     QString text;
+    
     switch (m_algorithm) {
     default:
     case 1:
@@ -242,24 +243,20 @@ void PegeMainWindow::startGame(int algorithm)
 
     statusBar()->changeItem(i18n("Algorithm: %1", text), 0);
 
-    srand(time(0));
-    m_seed = rand();
-
-    m_board->generate(m_seed, m_difficulty, m_algorithm);
+    m_board->generate(m_difficulty, m_algorithm);
 
     KConfigGroup savegame = KGlobal::config()->group("Game");
-    savegame.writeEntry("Seed", m_seed);
     savegame.writeEntry("Difficulty", m_difficulty);
     savegame.writeEntry("Algorithm", m_algorithm);
     savegame.writeEntry("Moves", QStringList());
 }
 
-void PegeMainWindow::updateMoves(int count)
+void KpegMainWindow::updateMoves(int count)
 {
     statusBar()->changeItem(i18n("Moves: %1", count) , 1);
 }
 
-void PegeMainWindow::pauseGame(bool paused)
+void KpegMainWindow::pauseGame(bool paused)
 {
     m_board->setGamePaused(paused);
     if (paused) {
@@ -269,20 +266,20 @@ void PegeMainWindow::pauseGame(bool paused)
     }
 }
 
-void PegeMainWindow::updateTimer(const QString& timeStr)
+void KpegMainWindow::updateTimer(const QString& timeStr)
 {
     statusBar()->changeItem(i18n("Time: %1", timeStr), 2);
 }
 
-void PegeMainWindow::levelChanged(KGameDifficulty::standardLevel)
+void KpegMainWindow::levelChanged(KGameDifficulty::standardLevel)
 {
     KGameDifficulty::setLevel(KGameDifficulty::level());
-    PegeSettings::self()->writeConfig();
+    KpegSettings::self()->writeConfig();
 
     loadGame();
 }
 
-void PegeMainWindow::showHighscores()
+void KpegMainWindow::showHighscores()
 {
     KScoreDialog ksdialog(KScoreDialog::Name | KScoreDialog::Level | KScoreDialog::Time, this);
     ksdialog.setConfigGroup(KGameDifficulty::localizedLevelString());

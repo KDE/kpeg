@@ -1,5 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
+  Copyright 2010  Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -18,34 +19,31 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * @mainpage Peg-E
- *
- * Peg-E is a peg elimination game.
- *
- * @author Graeme Gott
- */
-
 #include "window.h"
 
 #include <KApplication>
 #include <KAboutData>
 #include <KCmdLineArgs>
 
+static KLocalizedString description = ki18n("Peg Solitaire game");
+static KLocalizedString notice = ki18n("(c) 2009, Graeme Gott\n"
+"(c) 2010, Ronny Yabar Aizcorbe\n");
+
+static const char version[] = "0.2";
+
 int main(int argc, char* argv[])
 {
-    KAboutData about_data("pege", 0, ki18n("Peg-E"), "1.0.90",
-                          ki18n("Peg elimination game"), KAboutData::License_GPL,
-                          ki18n("Copyright &copy; 2009 Graeme Gott"), KLocalizedString(), 0,
-                          "graeme@gottcode.org");
-    about_data.addAuthor(ki18n("Graeme Gott"), KLocalizedString(),
-                         "graeme@gottcode.org", "http://gottcode.org/");
-    KCmdLineArgs::init(argc, argv, &about_data);
+  
+    KAboutData aboutData( "pege", 0, ki18n("KPeg"), 
+    version, description, KAboutData::License_GPL, notice);
+    aboutData.addAuthor(ki18n("Graeme Gott"), ki18n("Original author"), "graeme@gottcode.org");
+    aboutData.addAuthor(ki18n("Ronny Yabar Aizcorbe"), ki18n("Developer and current maintainer"), "ronnycontacto@gmail.com");			 
+    KCmdLineArgs::init(argc, argv, &aboutData);
 
     KApplication app;
     KGlobal::locale()->insertCatalog("libkdegames");
 
-    PegeMainWindow* window = new PegeMainWindow;
+    KpegMainWindow* window = new KpegMainWindow;
     window->show();
 
     return app.exec();

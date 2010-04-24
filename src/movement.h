@@ -1,5 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
+  Copyright 2010  Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -18,8 +19,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PEGE_MOVEMENT_H
-#define PEGE_MOVEMENT_H
+#ifndef MOVEMENT_H
+#define MOVEMENT_H
 
 #include <QHash>
 #include <QPoint>
@@ -59,4 +60,4 @@ private:
     Board* m_board;
 };
 
-#endif // PEGE_MOVEMENT_H
+#endif // MOVEMENT_H

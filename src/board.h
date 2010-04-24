@@ -1,5 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
+  Copyright 2010  Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -18,8 +19,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PEGE_BOARD_H
-#define PEGE_BOARD_H
+#ifndef BOARD_H
+#define BOARD_H
 
 #include <QGraphicsView>
 #include <QHash>
@@ -81,7 +82,7 @@ public:
     * @param seed The seed passed to the random number generator.
     * @param difficulty How hard of a layout to create.
     */
-    void generate(int seed, int difficulty, int algorithm);
+    void generate(int difficulty, int algorithm);
 
     /**
     * Moves a peg from @p ole_hole to @p new_hole.
@@ -119,4 +120,4 @@ private:
     Peg* m_peg;
 };
 
-#endif // PEGE_BOARD_H
+#endif // BOARD_H

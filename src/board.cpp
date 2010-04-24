@@ -1,5 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
+  Copyright 2010  Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -48,7 +49,7 @@ Board::Board(KUndoStack* moves, QWidget* parent)
     setScene(scene);
     // Load theme
     m_theme = new KSvgRenderer(this);
-    setTheme(PegeSettings::theme());
+    setTheme(KpegSettings::theme());
 
     m_peg = new Peg();
     connect(m_peg, SIGNAL(movesCountChanged(int)), SIGNAL(countChanged(int)));
@@ -77,31 +78,34 @@ Hole* Board::hole(const QPoint& hole) const
     return m_holes.contains(hole) ? m_holes[hole] : 0;
 }
 
-void Board::generate(int seed, int difficulty, int algorithm)
+void Board::generate(int difficulty, int algorithm)
 {
     // Remove old puzzle
     m_status = 0;
     m_message = 0;
     m_moves->clear();
     m_holes.clear();
+    
     scene()->clear();
     setInteractive(true);
 
     // Create puzzle
     Puzzle* puzzle = 0;
+    
     switch (algorithm) {
+    case 1:
+    default:
+        puzzle = new Puzzle;
+        break;
     case 2:
         puzzle = new PuzzleBranch;
         break;
     case 3:
         puzzle = new PuzzleLine;
-        break;
-    case 1:
-    default:
-        puzzle = new Puzzle;
-        break;
+        break; 
     }
-    puzzle->generate(seed, difficulty);
+    
+    puzzle->generate(difficulty);
 
     // Create scene
     setSceneRect(QRectF(puzzle->position() * 22, puzzle->size() * 22).adjusted(-10, -10, 10, 10));
@@ -151,9 +155,7 @@ void Board::move(const QPoint& old_hole, const QPoint& new_hole)
         // Remove saved game
         KConfigGroup savegame = KGlobal::config()->group("Game");
         savegame.writeEntry("Moves", QStringList());
-        if (m_status == 2) {
-            savegame.writeEntry("Seed", 0);
-        }
+        
     }
 }
 
@@ -169,7 +171,7 @@ void Board::setTheme(const QString& theme)
             svg->setCacheMode(QGraphicsItem::NoCache);
             svg->setSharedRenderer(m_theme);
             svg->update();
-            svg->setCacheMode(QGraphicsItem::DeviceCoordinateCache);
+            svg->setCacheMode(QGraphicsItem::DeviceCoordinateCache);	    
         }
     }
     scene()->invalidate();

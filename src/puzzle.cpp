@@ -1,5 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
+  Copyright 2010  Ronny Yabar <ronnycontacto@gmail.com>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -60,17 +61,13 @@ QSize Puzzle::size() const
     return QSize((m_bottom_right.x() - m_top_left.x()) + 1, (m_bottom_right.y() - m_top_left.y()) + 1);
 }
 
-void Puzzle::generate(int seed, int difficulty)
+void Puzzle::generate(int difficulty)
 {
-    srand(seed);
-
-    difficulty = qBound(1, difficulty, 101);
     difficulty += 5;
-
-    generate(difficulty);
+    generate_pegs(difficulty);
 }
 
-void Puzzle::generate(int pegs)
+void Puzzle::generate_pegs(int pegs)
 {
     QPoint start(0, 0);
     setHasPeg(start, true);
@@ -138,20 +135,23 @@ void Puzzle::setHasPeg(const QPoint& hole, bool value)
     m_holes[hole] = value;
 }
 
-void PuzzleBranch::generate(int pegs)
+void PuzzleBranch::generate_pegs(int pegs)
 {
     QPoint start_hole(0, 0);
     setHasPeg(start_hole, true);
 
     int loops = pegs;
+    int base = loops / 2;
+    
     while (loops > 0) {
-        int group_loops = qMin(10, loops);
+        int group_loops = qMin(base,loops);
         start_hole = findMoves(start_hole, group_loops);
         loops -= group_loops;
 
         QPoint jumped_hole, end_hole;
-        int branch_loops = qMin(10, loops);
-        for (int i = 0; i < branch_loops; ++i) {
+        int branch_loops = qMin(base,loops);
+        
+	for (int i = 0; i < branch_loops; ++i) {
             if (findNextMove(start_hole, jumped_hole, end_hole)) {
                 start_hole = end_hole;
                 loops--;

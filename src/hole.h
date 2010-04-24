@@ -1,5 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
+  Copyright 2010  Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -18,8 +19,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PEGE_HOLE_H
-#define PEGE_HOLE_H
+#ifndef HOLE_H
+#define HOLE_H
 
 #include <QGraphicsSvgItem>
 class Peg;
@@ -60,4 +61,4 @@ private:
     Peg* m_peg;
 };
 
-#endif // PEGE_HOLE_H
+#endif // HOLE_H

@@ -1,5 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
+  Copyright 2010  Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -18,8 +19,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PEGE_MAIN_WINDOW_H
-#define PEGE_MAIN_WINDOW_H
+#ifndef WINDOW_H
+#define WINDOW_H
 
 #include <KXmlGuiWindow>
 #include <KGameDifficulty>
@@ -30,13 +31,13 @@ class KGameClock;
 class KToggleAction;
 
 
-class PegeMainWindow : public KXmlGuiWindow
+class KpegMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
 
-    PegeMainWindow(QWidget* parent = 0);
-    ~PegeMainWindow();
+    KpegMainWindow(QWidget* parent = 0);
+    ~KpegMainWindow();
 
 private slots:
     void newGame();
@@ -60,10 +61,9 @@ private:
     KGameClock* m_gameClock;
     KToggleAction* m_actionPause;
 
-    int m_seed;
     int m_difficulty;
     int m_algorithm;
 
 };
 
-#endif // PEGE_MAIN_WINDOW_H
+#endif // WINDOW_H

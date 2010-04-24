@@ -1,5 +1,5 @@
 # Code generation options for kconfig_compiler
-File=pege.kcfg
-ClassName=PegeSettings
+File=kpeg.kcfg
+ClassName=KpegSettings
 Singleton=true
 Mutators=true

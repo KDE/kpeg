@@ -1,5 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
+  Copyright 2010  Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -18,8 +19,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PEGE_PEG_H
-#define PEGE_PEG_H
+#ifndef PEG_H
+#define PEG_H
 
 #include <QGraphicsSvgItem>
 class Board;
@@ -73,4 +74,4 @@ private:
 
 };
 
-#endif // PEGE_PEG_H
+#endif // PEG_H

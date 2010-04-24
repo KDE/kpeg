@@ -1,5 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
+  Copyright 2010  Ronny Yabar <ronnycontacto@gmail.com>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -18,8 +19,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PEGE_PUZZLE_H
-#define PEGE_PUZZLE_H
+#ifndef PUZZLE_H
+#define PUZZLE_H
 
 #include <QHash>
 #include <QPoint>
@@ -46,10 +47,9 @@ public:
     /**
     * Creates a layout.
     *
-    * @param seed The seed passed to the random number generator.
     * @param difficulty How hard of a layout to create.
     */
-    void generate(int seed, int difficulty);
+    void generate(int difficulty);
 
 protected:
     /**
@@ -57,7 +57,7 @@ protected:
     *
     * @param pegs How many pegs to create.
     */
-    virtual void generate(int pegs);
+    virtual void generate_pegs(int difficulty);
 
     /**
     * Returns true if @p hole has no peg.
@@ -124,7 +124,7 @@ protected:
     *
     * @param pegs How many pegs to create.
     */
-    virtual void generate(int pegs);
+    virtual void generate_pegs(int pegs);
 };
 
 /**
@@ -148,4 +148,4 @@ protected:
     virtual void shuffle(QList<QPoint>& pegs) const;
 };
 
-#endif // PEGE_PUZZLE_H
+#endif // PUZZLE_H
