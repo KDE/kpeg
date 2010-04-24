@@ -1,0 +1,12 @@
+[KGameTheme]
+VersionFormat=1
+Name=Default - Blue
+Name[en_GB]=Default - Blue
+Name[es]=Predeterminado - azul
+Description=Default theme with blue pegs
+Description[en_GB]=Default theme with blue pegs
+Description[es]=Tema predeterminado con estacas azules
+FileName=default-blue.svgz
+Author=Ronny Yabar Aizcorbe
+AuthorEmail=ronnycontacto@gmail.com
+Preview=default-blue.png
