@@ -1,11 +1,17 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default - Blue
-Name[en_GB]=Default - Blue
 Name[es]=Predeterminado - azul
+Name[pt]=Predefinição - Azul
+Name[sv]=Standard - Blå
+Name[uk]=Типова — Синя
+Name[x-test]=xxDefault - Bluexx
 Description=Default theme with blue pegs
-Description[en_GB]=Default theme with blue pegs
-Description[es]=Tema predeterminado con estacas azules
+Description[es]=Tema predeterminado con clavijas azules
+Description[pt]=O tema predefinido com pinos azuis
+Description[sv]=Standardtema med blåa pjäser
+Description[uk]=Типова тема з синіми фішками
+Description[x-test]=xxDefault theme with blue pegsxx
 FileName=default-blue.svgz
 Author=Ronny Yabar Aizcorbe
 AuthorEmail=ronnycontacto@gmail.com
