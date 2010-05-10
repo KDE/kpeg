@@ -2,12 +2,14 @@
 VersionFormat=1
 Name=Default - Blue
 Name[es]=Predeterminado - azul
+Name[fr]=Défaut - Bleu
 Name[pt]=Predefinição - Azul
 Name[sv]=Standard - Blå
 Name[uk]=Типова — Синя
 Name[x-test]=xxDefault - Bluexx
 Description=Default theme with blue pegs
 Description[es]=Tema predeterminado con clavijas azules
+Description[fr]=Thème par défaut avec des chevilles bleus
 Description[pt]=O tema predefinido com pinos azuis
 Description[sv]=Standardtema med blåa pjäser
 Description[uk]=Типова тема з синіми фішками
