@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default Red
+Name[de]=Standard – Rot
 Name[en_GB]=Default Red
 Name[es]=Rojo predeterminado
 Name[fr]=Rouge par défaut
@@ -11,6 +12,7 @@ Name[sv]=Standard - Röd
 Name[uk]=Типова — Червона
 Name[x-test]=xxDefault Redxx
 Description=Wood theme for KPeg
+Description[de]=Ein hölzernes Design für KPeg.
 Description[en_GB]=Wood theme for KPeg
 Description[es]=Tema de madera para KPeg
 Description[fr]=Thème « bois » de KPeg

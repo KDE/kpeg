@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=KPeg
+Name[de]=KPeg
 Name[en_GB]=KPeg
 Name[es]=KPeg
 Name[fr]=KPeg
@@ -10,6 +11,7 @@ Name[sv]=Kpjäs
 Name[uk]=KPeg
 Name[x-test]=xxKPegxx
 GenericName=Peg Solitaire Game
+GenericName[de]=Peg-Solitär
 GenericName[en_GB]=Peg Solitaire Game
 GenericName[es]=Juego solitario de clavijas
 GenericName[fr]=Jeu de solitaire Peg
