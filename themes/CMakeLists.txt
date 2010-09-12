@@ -3,4 +3,4 @@ file(GLOB themes
 	"*.desktop"
 	"*.png"
 )
-install(FILES ${themes} DESTINATION ${DATA_INSTALL_DIR}/pege/themes)
+install(FILES ${themes} DESTINATION ${DATA_INSTALL_DIR}/kpeg/themes)

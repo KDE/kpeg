@@ -34,7 +34,7 @@ static const char version[] = "0.2";
 int main(int argc, char* argv[])
 {
   
-    KAboutData aboutData( "pege", 0, ki18n("KPeg"), 
+    KAboutData aboutData( "kpeg", 0, ki18n("KPeg"),
     version, description, KAboutData::License_GPL, notice);
     aboutData.addAuthor(ki18n("Graeme Gott"), ki18n("Original author"), "graeme@gottcode.org");
     aboutData.addAuthor(ki18n("Ronny Yabar Aizcorbe"), ki18n("Developer and current maintainer"), "ronnycontacto@gmail.com");			 

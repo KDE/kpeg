@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
-  <!ENTITY pege "<application>Peg-E</application>">
-  <!ENTITY kappname "&pege;">
+  <!ENTITY kpeg "<application>KPeg</application>">
+  <!ENTITY kappname "&kpeg;">
   <!ENTITY package "kdegames">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE">
@@ -9,7 +9,7 @@
 
 <book lang="&language;">
 	<bookinfo>
-		<title>The &pege; Handbook</title>
+		<title>The &kpeg; Handbook</title>
 
 		<authorgroup>
 			<author>
@@ -34,7 +34,7 @@
 
 		<abstract>
 			<para>
-				&pege; is a peg elimination game.
+				&kpeg; is a peg elimination game.
 			</para>
 		</abstract>
 
@@ -42,7 +42,7 @@
 			<keyword>KDE</keyword>
 			<keyword>kdegames</keyword>
 			<keyword>game</keyword>
-			<keyword>Peg-E</keyword>
+			<keyword>KPeg</keyword>
 			<keyword>board</keyword>
 		</keywordset>
 
@@ -51,7 +51,7 @@
 	<chapter id="introduction">
 		<title>Introduction</title>
 		<para>
-			&pege; is a peg elimination game. The object of the game is to remove all but one peg from the board.
+			&kpeg; is a peg elimination game. The object of the game is to remove all but one peg from the board.
 		</para>
 	</chapter>
 
@@ -65,7 +65,7 @@
 	<chapter id="configuration">
 		<title>Game Configuration</title>
 		<para>
-			The &pege; configuration dialog allows you to select visual themes for &pege;.
+			The &kpeg; configuration dialog allows you to select visual themes for &kpeg;.
 		</para>
 		<para>
 			To select a new theme simply choose the theme's name from the selection list.
@@ -86,7 +86,7 @@
 
 	<chapter id="credits">
 		<title>Credits and License</title>
-		<para>&pege;</para>
+		<para>&kpeg;</para>
 		<para>
 			Program copyright 2009 Graeme Gott <email>graeme@gottcode.org</email>
 		</para>

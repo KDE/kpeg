@@ -20,4 +20,4 @@ target_link_libraries(kpeg ${KDEGAMES_LIBRARY} ${KDE4_KDEUI_LIBS})
 
 install(TARGETS kpeg ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kpeg.kcfg DESTINATION ${KCFG_INSTALL_DIR})
-install(FILES pegeui.rc DESTINATION  ${DATA_INSTALL_DIR}/pege)
+install(FILES kpegui.rc DESTINATION  ${DATA_INSTALL_DIR}/kpeg)
