@@ -24,9 +24,11 @@
 
 #include <QGraphicsView>
 #include <QHash>
+#include <QSvgRenderer>
+
+#include <KGameRenderer>
 
 class KGamePopupItem;
-class KSvgRenderer;
 class KUndoStack;
 class Hole;
 class Peg;
@@ -97,8 +99,10 @@ public:
     *
     * @param theme The theme to use.
     */
-    void setTheme(const QString& theme);
+    void setTheme();
     void setGamePaused(bool paused);
+    
+    KGameRenderer* renderer() { return &m_renderer; }
 
 signals:
     void countChanged(int);
@@ -116,7 +120,8 @@ private:
     int m_status;
     KUndoStack* m_moves;
     KGamePopupItem* m_message;
-    KSvgRenderer* m_theme;
+    KGameRenderer m_renderer;
+    QSvgRenderer* m_theme;
     Peg* m_peg;
 };
 

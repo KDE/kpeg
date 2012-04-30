@@ -28,11 +28,13 @@
 
 #include <KConfigGroup>
 #include <KGamePopupItem>
-#include <KGameTheme>
+#include <KgTheme>
+#include <KgThemeProvider>
+#include <KGameRenderer>
+#include <KGameRenderedItem>
 #include <KGlobal>
 #include <KLocale>
 #include <KSharedConfig>
-#include <KSvgRenderer>
 #include <KUndoStack>
 
 inline uint qHash(const QPoint& key)
@@ -40,16 +42,24 @@ inline uint qHash(const QPoint& key)
     return (key.x() << 16) + key.y();
 }
 
+static KgThemeProvider* provider()
+{
+    KgThemeProvider* prov = new KgThemeProvider;
+    prov->discoverThemes("appdata", QLatin1String("themes"), QLatin1String("default"));
+    return prov;
+}
+
 Board::Board(KUndoStack* moves, QWidget* parent)
         : QGraphicsView(parent),
         m_status(0),
-        m_moves(moves)
+        m_moves(moves),
+        m_renderer(provider())
 {
     QGraphicsScene* scene = new QGraphicsScene(this);
     setScene(scene);
     // Load theme
-    m_theme = new KSvgRenderer(this);
-    setTheme(KpegSettings::theme());
+    m_theme = new QSvgRenderer(this);  
+    setTheme();
 
     m_peg = new Peg();
     connect(m_peg, SIGNAL(movesCountChanged(int)), SIGNAL(countChanged(int)));
@@ -159,11 +169,10 @@ void Board::move(const QPoint& old_hole, const QPoint& new_hole)
     }
 }
 
-void Board::setTheme(const QString& theme)
-{
-    KGameTheme game_theme;
-    game_theme.load(theme);
-    m_theme->load(game_theme.graphics());
+void Board::setTheme()
+{ 
+    const KgTheme* theme = m_renderer.theme();
+    m_theme->load(theme->graphicsPath());
 
     foreach(QGraphicsItem* item, scene()->items()) {
         QGraphicsSvgItem* svg = qgraphicsitem_cast<QGraphicsSvgItem*>(item);

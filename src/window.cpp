@@ -33,7 +33,7 @@
 #include <KConfigGroup>
 #include <KDialog>
 #include <KScoreDialog>
-#include <KGameThemeSelector>
+#include <KgThemeSelector>
 #include <KGameClock>
 #include <KGlobal>
 #include <KLocale>
@@ -164,14 +164,15 @@ void KpegMainWindow::configureSettings()
         return;
     }
     KConfigDialog* dialog = new KConfigDialog(this, "settings", KpegSettings::self());
-    dialog->addPage(new KGameThemeSelector(dialog, KpegSettings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "games-config-theme");
-    connect(dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
+    dialog->addPage( new KgThemeSelector( m_board->renderer()->themeProvider() ), i18n( "Theme" ), QLatin1String( "games-config-theme" )); 
+    connect( m_board->renderer()->themeProvider(), SIGNAL(currentThemeChanged(const KgTheme*)), SLOT(loadSettings()) );
+    connect( dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()) );
     dialog->show();
 }
 
 void KpegMainWindow::loadSettings()
 {
-    m_board->setTheme(KpegSettings::theme());
+    m_board->setTheme();
     KConfigGroup savegame = KGlobal::config()->group("Game");
 }
 
