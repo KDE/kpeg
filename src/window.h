@@ -23,7 +23,7 @@
 #define WINDOW_H
 
 #include <KXmlGuiWindow>
-#include <KGameDifficulty>
+#include <KgDifficulty>
 
 class KUndoStack;
 class Board;
@@ -47,7 +47,7 @@ private slots:
     void updateTimer(const QString&);
     void pauseGame(bool paused);
     void updateMoves(int count);
-    void levelChanged(KGameDifficulty::standardLevel);
+    void levelChanged();
     void showHighscores();
 
 private:

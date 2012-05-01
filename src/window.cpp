@@ -66,7 +66,6 @@ KpegMainWindow::KpegMainWindow(QWidget* parent)
     setupActions();
     setupGUI();
 
-    KGameDifficulty::setLevel(KGameDifficulty::Easy);
     loadGame();
 
 }
@@ -101,14 +100,13 @@ void KpegMainWindow::setupActions()
     action = KStandardGameAction::redo(m_moves, SLOT(redo()), actionCollection());
     action->setEnabled(false);
     connect(m_moves, SIGNAL(canRedoChanged(bool)), action, SLOT(setEnabled(bool)));
+    
+    Kg::difficulty()->addStandardLevelRange(
+        KgDifficultyLevel::Easy, KgDifficultyLevel::VeryHard
+    );
 
-    KGameDifficulty::init(this, this, SLOT(levelChanged(KGameDifficulty::standardLevel)));
-    KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::VeryHard);
+    KgDifficultyGUI::init(this);
+    connect(Kg::difficulty(), SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(levelChanged()));
 }
 
 void KpegMainWindow::newGame()
@@ -121,7 +119,7 @@ void KpegMainWindow::newGame()
         m_actionPause->setChecked(false);
     }
     m_actionPause->setEnabled(false);
-    KGameDifficulty::setRunning(false);
+    Kg::difficulty()->setGameRunning(false);
 
     KDialog* dialog = new KDialog(this);
     dialog->setCaption(i18n("New"));
@@ -205,23 +203,20 @@ void KpegMainWindow::startGame(int algorithm)
 {
     m_actionPause->setEnabled(true);
     m_gameClock->resume();
-    KGameDifficulty::setRunning(true);
+    Kg::difficulty()->setGameRunning(true);
 
-    switch (KGameDifficulty::level()) {
+    switch (Kg::difficultyLevel()) {
     default:
-    case KGameDifficulty::VeryEasy:
-        m_difficulty = 5;
-        break;
-    case KGameDifficulty::Easy:
+    case KgDifficultyLevel::Easy:
         m_difficulty = 15;
         break;
-    case KGameDifficulty::Medium:
+    case KgDifficultyLevel::Medium:
         m_difficulty = 30;
         break;
-    case KGameDifficulty::Hard:
+    case KgDifficultyLevel::Hard:
         m_difficulty = 40;
         break;
-    case KGameDifficulty::VeryHard:
+    case KgDifficultyLevel::VeryHard:
         m_difficulty = 60;
         break;
     }
@@ -272,17 +267,18 @@ void KpegMainWindow::updateTimer(const QString& timeStr)
     statusBar()->changeItem(i18n("Time: %1", timeStr), 2);
 }
 
-void KpegMainWindow::levelChanged(KGameDifficulty::standardLevel)
+void KpegMainWindow::levelChanged()
 {
-    KGameDifficulty::setLevel(KGameDifficulty::level());
     KpegSettings::self()->writeConfig();
-
     loadGame();
 }
 
 void KpegMainWindow::showHighscores()
 {
     KScoreDialog ksdialog(KScoreDialog::Name | KScoreDialog::Level | KScoreDialog::Time, this);
-    ksdialog.setConfigGroup(KGameDifficulty::localizedLevelString());
+    ksdialog.setConfigGroup(qMakePair(
+        Kg::difficulty()->currentLevel()->key(),
+        Kg::difficulty()->currentLevel()->title()
+    ));
     ksdialog.exec();
 }
