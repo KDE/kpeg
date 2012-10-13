@@ -7,7 +7,7 @@
   <!ENTITY % English "INCLUDE">
 ]>
 
-<book lang="&language;">
+<book id="kpeg" lang="&language;">
 	<bookinfo>
 		<title>The &kpeg; Handbook</title>
 
