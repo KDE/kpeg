@@ -1,3 +1,9 @@
+2012-05-01 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+        * Port from KGameDifficulty to KgDifficulty.
+
+2012-04-30 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+        * Port to KGameRenderer.
+        
 2009-12-01 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
         * Show timer.
         * Add Pause Action.
