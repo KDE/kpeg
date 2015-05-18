@@ -31,7 +31,6 @@
 #include <QUndoStack>
 #include <QVBoxLayout>
 
-#include <KApplication>
 #include <KActionCollection>
 #include <KStandardGameAction>
 #include <KToggleAction>
@@ -99,7 +98,7 @@ void KpegMainWindow::setupActions()
     KStandardGameAction::restart(this, SLOT(restartGame()), actionCollection());
     m_actionPause = KStandardGameAction::pause(this, SLOT(pauseGame(bool)), actionCollection());
     KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
-    KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
+    KStandardGameAction::quit(this, SLOT(close()), actionCollection());
     KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
 
     QAction* action = KStandardGameAction::undo(m_moves, SLOT(undo()), actionCollection());
