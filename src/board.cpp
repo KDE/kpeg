@@ -27,13 +27,13 @@
 #include "settings.h"
 
 #include <QUndoStack>
-
 #include <KConfigGroup>
 #include <KGamePopupItem>
 #include <KgTheme>
 #include <KgThemeProvider>
 #include <KLocalizedString>
 #include <KSharedConfig>
+//#include <KgSound>
 
 inline uint qHash(const QPoint& key)
 {
@@ -61,6 +61,9 @@ Board::Board(QWidget* parent)
 
     m_peg = new Peg();
     connect(m_peg, SIGNAL(movesCountChanged(int)), SIGNAL(countChanged(int)));
+
+    m_soundMove = new KgSound(QStandardPaths::locate(QStandardPaths::DataLocation,
+                                                    QLatin1Literal("sounds/move.wav")), this);
 
     // Configure view
     setCacheMode(QGraphicsView::CacheBackground);
@@ -150,6 +153,8 @@ void Board::generate(int difficulty, int algorithm)
 
 void Board::move(const QPoint& old_hole, const QPoint& new_hole)
 {
+    m_soundMove->start();
+
     // Move peg
     Movement* movement = new Movement(old_hole, new_hole, this);
     m_moves->push(movement);
