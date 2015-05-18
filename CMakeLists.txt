@@ -40,6 +40,7 @@ add_definitions("-DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII")
 add_subdirectory(src) 
 add_subdirectory(icons)
 add_subdirectory(themes)
+add_subdirectory(sounds)
 add_subdirectory(doc)
 
 install(PROGRAMS org.kde.kpeg.desktop  DESTINATION  ${KDE_INSTALL_APPDIR})
