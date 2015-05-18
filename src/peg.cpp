@@ -24,6 +24,8 @@
 #include "hole.h"
 
 #include <QGraphicsDropShadowEffect>
+#include <QStandardPaths>
+
 
 Peg::Peg()
 {
@@ -40,6 +42,9 @@ Peg::Peg(const QPoint& hole, Board* board, QGraphicsItem* parent)
     setFlag(QGraphicsItem::ItemIsMovable, true);
     setCursor(Qt::OpenHandCursor);
     move(m_hole);
+
+    m_soundPeg = new KgSound(QStandardPaths::locate(QStandardPaths::DataLocation,
+                                                    QLatin1Literal("sounds/peg.wav")), this);
     
     QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
     effect->setOffset(3);
@@ -56,6 +61,7 @@ bool Peg::canMove()
 
 void Peg::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
+    m_soundPeg->start();
     findHoles();
     showAvailableHoles(true);
 
@@ -90,6 +96,7 @@ void Peg::move(QPoint hole)
 {
     m_hole = hole;
     setPos(m_hole.x() * 22, m_hole.y() * 22);
+
 }
 
 void Peg::findHoles()

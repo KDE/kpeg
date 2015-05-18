@@ -23,6 +23,8 @@
 #define PEG_H
 
 #include <QGraphicsSvgItem>
+#include <KgSound>
+
 class Board;
 
 /**
@@ -71,6 +73,7 @@ private:
     QPoint m_hole;
     QList<QPoint> m_holes;
     Board* m_board;
+    KgSound *m_soundPeg;
 
 };
 
