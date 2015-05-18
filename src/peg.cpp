@@ -35,7 +35,7 @@ Peg::Peg(const QPoint& hole, Board* board, QGraphicsItem* parent)
         m_hole(hole),
         m_board(board)
 {
-    setElementId("peg");
+    setElementId(QLatin1String("peg"));
     setZValue(2);
     setFlag(QGraphicsItem::ItemIsMovable, true);
     setCursor(Qt::OpenHandCursor);

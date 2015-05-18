@@ -24,9 +24,12 @@
 
 #include <KXmlGuiWindow>
 #include <KgDifficulty>
+#include <QLabel>
+#include <QPointer>
+#include <QUndoStack>
 
-class KUndoStack;
 class Board;
+class QStatusBar;
 class KGameClock;
 class KToggleAction;
 
@@ -35,8 +38,7 @@ class KpegMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-
-    KpegMainWindow(QWidget* parent = 0);
+    KpegMainWindow();
     ~KpegMainWindow();
 
 private slots:
@@ -56,8 +58,11 @@ private:
     void setupActions();
 
     Board* m_board;
-
-    KUndoStack* m_moves;
+    QPointer<QLabel> m_levelLabel = new QLabel;
+    QPointer<QLabel> m_movesLabel = new QLabel;
+    QPointer<QLabel> m_timeLabel = new QLabel;
+    QStatusBar *m_statusBar;
+    QUndoStack* m_moves;
     KGameClock* m_gameClock;
     KToggleAction* m_actionPause;
 

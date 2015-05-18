@@ -38,7 +38,7 @@ Movement::Movement(const QPoint& start_hole, const QPoint& end_hole, Board* boar
     m_peg = m_board->hole(start_hole)->peg();
     m_jumped_peg = m_board->hole(m_jumped_hole)->peg();
 
-    setText(QString("%1x%2:%3x%4").arg(m_start_hole.x()).arg(m_start_hole.y()).arg(m_end_hole.x()).arg(m_end_hole.y()));
+    setText(QString::fromLatin1("%1x%2:%3x%4").arg(m_start_hole.x()).arg(m_start_hole.y()).arg(m_end_hole.x()).arg(m_end_hole.y()));
 }
 
 void Movement::redo()

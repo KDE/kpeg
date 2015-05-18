@@ -23,51 +23,58 @@
 #include "board.h"
 #include "settings.h"
 
+#include <QAction>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QStatusBar>
+#include <QUndoStack>
+#include <QVBoxLayout>
+
 #include <KApplication>
-#include <KAction>
 #include <KActionCollection>
 #include <KStandardGameAction>
 #include <KToggleAction>
 #include <KComboBox>
 #include <KConfigDialog>
 #include <KConfigGroup>
-#include <KDialog>
 #include <KScoreDialog>
 #include <KgThemeSelector>
 #include <KGameClock>
-#include <KGlobal>
 #include <KLocale>
 #include <KMessageBox>
 #include <KSharedConfig>
-#include <KStatusBar>
-#include <KUndoStack>
+
 
 #include <QFormLayout>
 #include <ctime>
 
-KpegMainWindow::KpegMainWindow(QWidget* parent)
-        : KXmlGuiWindow(parent),
-        m_difficulty(5),
-        m_algorithm(1)
+KpegMainWindow::KpegMainWindow()
 {
-    m_moves = new KUndoStack(this);
+    m_difficulty = 5;
+    m_algorithm = 1;
+    m_moves = new QUndoStack(this);
     m_gameClock = new KGameClock(this, KGameClock::MinSecOnly);
     connect(m_gameClock, SIGNAL(timeChanged(const QString&)), SLOT(updateTimer(const QString&)));
 
-    m_board = new Board(m_moves, this);
+    m_board = new Board(this);
     connect(m_board, SIGNAL(countChanged(int)), SLOT(updateMoves(int)));
 
     setCentralWidget(m_board);
 
-    statusBar()->insertItem(i18n("Algorithm: "), 0);
-    statusBar()->insertItem(i18n("Moves: 0"), 1);
-    statusBar()->insertItem(i18n("Time: 00:00"), 2);
+    m_statusBar = statusBar();
+    m_levelLabel->setText(i18n("Algorithm: %1", QLatin1String("")));
+    m_movesLabel->setText(i18n("Moves: %1", QLatin1String("0")));
+    m_timeLabel->setText(i18n("Time: %1", QLatin1String("00:00")));
+
+    m_statusBar->insertPermanentWidget(0, m_levelLabel);
+    m_statusBar->insertPermanentWidget(1, m_movesLabel);
+    m_statusBar->insertPermanentWidget(2, m_timeLabel);
 
     setupActions();
     setupGUI();
 
     loadGame();
-
 }
 
 KpegMainWindow::~KpegMainWindow()
@@ -79,7 +86,9 @@ KpegMainWindow::~KpegMainWindow()
         for (int i = 0; i < count; ++i) {
             moves += m_moves->text(i);
         }
-        KConfigGroup savegame = KGlobal::config()->group("Game");
+        
+        KConfig *config = KSharedConfig::openConfig().data();
+        KConfigGroup savegame = config->group("Game");
         savegame.writeEntry("Moves", moves);
     }
 }
@@ -93,7 +102,7 @@ void KpegMainWindow::setupActions()
     KStandardGameAction::quit(kapp, SLOT(quit()), actionCollection());
     KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
 
-    KAction* action = KStandardGameAction::undo(m_moves, SLOT(undo()), actionCollection());
+    QAction* action = KStandardGameAction::undo(m_moves, SLOT(undo()), actionCollection());
     action->setEnabled(false);
     connect(m_moves, SIGNAL(canUndoChanged(bool)), action, SLOT(setEnabled(bool)));
 
@@ -121,15 +130,28 @@ void KpegMainWindow::newGame()
     m_actionPause->setEnabled(false);
     Kg::difficulty()->setGameRunning(false);
 
-    KDialog* dialog = new KDialog(this);
-    dialog->setCaption(i18n("New"));
-    dialog->setButtons(KDialog::Ok | KDialog::Cancel);
+    QDialog* dialog = new QDialog(this);
+    dialog->setWindowTitle(i18n("New"));
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QWidget *mainWidget = new QWidget(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    dialog->setLayout(mainLayout);
+    mainLayout->addWidget(mainWidget);
+
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    dialog->connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
+    dialog->connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
+    mainLayout->addWidget(buttonBox);
 
     // Create contents of dialog
     QWidget* contents = new QWidget(dialog);
-    dialog->setMainWidget(contents);
+    mainLayout->addWidget(contents);
 
     KComboBox* algorithms_box = new KComboBox(contents);
+    mainLayout->addWidget(algorithms_box);
     algorithms_box->addItem(i18n("Original"), 1);
     algorithms_box->addItem(i18n("Branch"), 2);
     algorithms_box->addItem(i18n("Line"), 3);
@@ -144,7 +166,7 @@ void KpegMainWindow::newGame()
     }
 
     delete dialog;
-    statusBar()->changeItem(i18n("Time: 00:00"), 2);
+    m_timeLabel->setText(i18n("Time: %1", QLatin1String("00:00")));
 }
 
 void KpegMainWindow::restartGame()
@@ -158,11 +180,11 @@ void KpegMainWindow::restartGame()
 
 void KpegMainWindow::configureSettings()
 {
-    if (KConfigDialog::showDialog("settings")) {
+    if (KConfigDialog::showDialog(QLatin1String("settings"))) {
         return;
     }
-    KConfigDialog* dialog = new KConfigDialog(this, "settings", KpegSettings::self());
-    dialog->addPage( new KgThemeSelector( m_board->renderer()->themeProvider() ), i18n( "Theme" ), QLatin1String( "games-config-theme" )); 
+    KConfigDialog* dialog = new KConfigDialog(this, QLatin1String("settings"), KpegSettings::self());
+    dialog->addPage(new KgThemeSelector( m_board->renderer()->themeProvider() ), i18n("Theme"), QLatin1String( "games-config-theme" ));
     connect( m_board->renderer()->themeProvider(), SIGNAL(currentThemeChanged(const KgTheme*)), SLOT(loadSettings()) );
     connect( dialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()) );
     dialog->show();
@@ -171,19 +193,21 @@ void KpegMainWindow::configureSettings()
 void KpegMainWindow::loadSettings()
 {
     m_board->setTheme();
-    KConfigGroup savegame = KGlobal::config()->group("Game");
+    KConfig *config = KSharedConfig::openConfig().data();
+    KConfigGroup savegame = config->group("Game");
 }
 
 void KpegMainWindow::loadGame()
 {
     // Load board
-    KConfigGroup savegame = KGlobal::config()->group("Game");
+    KConfig *config = KSharedConfig::openConfig().data();
+    KConfigGroup savegame = config->group("Game");
     QStringList moves = savegame.readEntry("Moves", QStringList());
 
     startGame(m_algorithm);
 
     // Load moves
-    QRegExp parse("(-?\\d+)x(-?\\d+):(-?\\d+)x(-?\\d+)");
+    QRegExp parse(QString::fromLatin1("(-?\\d+)x(-?\\d+):(-?\\d+)x(-?\\d+)"));
     foreach(const QString& move, moves) {
         if (!parse.exactMatch(move)) {
             continue;
@@ -237,11 +261,11 @@ void KpegMainWindow::startGame(int algorithm)
         break;
     }
 
-    statusBar()->changeItem(i18n("Algorithm: %1", text), 0);
-
+    m_levelLabel->setText(i18n("Algorithm: %1", text));
     m_board->generate(m_difficulty, m_algorithm);
 
-    KConfigGroup savegame = KGlobal::config()->group("Game");
+    KConfig *config = KSharedConfig::openConfig().data();
+    KConfigGroup savegame = config->group("Game");
     savegame.writeEntry("Difficulty", m_difficulty);
     savegame.writeEntry("Algorithm", m_algorithm);
     savegame.writeEntry("Moves", QStringList());
@@ -249,7 +273,7 @@ void KpegMainWindow::startGame(int algorithm)
 
 void KpegMainWindow::updateMoves(int count)
 {
-    statusBar()->changeItem(i18n("Moves: %1", count) , 1);
+    m_movesLabel->setText(i18n("Moves: %1", count));
 }
 
 void KpegMainWindow::pauseGame(bool paused)
@@ -264,12 +288,12 @@ void KpegMainWindow::pauseGame(bool paused)
 
 void KpegMainWindow::updateTimer(const QString& timeStr)
 {
-    statusBar()->changeItem(i18n("Time: %1", timeStr), 2);
+    m_timeLabel->setText(i18n("Time: %1", timeStr));
 }
 
 void KpegMainWindow::levelChanged()
 {
-    KpegSettings::self()->writeConfig();
+    KpegSettings::self()->save();
     loadGame();
 }
 

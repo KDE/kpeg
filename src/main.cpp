@@ -21,27 +21,45 @@
 
 #include "window.h"
 
-#include <KApplication>
+#include <QApplication>
+#include <QCommandLineParser>
+
 #include <KAboutData>
-#include <KCmdLineArgs>
+#include <KDBusService>
+#include <Kdelibs4ConfigMigrator>
+#include <KLocalizedString>
 
-static KLocalizedString description = ki18n("Peg Solitaire game");
-static KLocalizedString notice = ki18n("(c) 2009, Graeme Gott\n"
-"(c) 2010, Ronny Yabar Aizcorbe\n");
-
-static const char version[] = "0.2";
 
 int main(int argc, char* argv[])
 {
+    QApplication app(argc, argv);
+    
+    Kdelibs4ConfigMigrator migrate(QStringLiteral("kpeg"));
+    migrate.setConfigFiles(QStringList() << QStringLiteral("kpegrc"));
+    migrate.setUiFiles(QStringList() << QStringLiteral("kpegui.rc"));
+    migrate.migrate();
   
-    KAboutData aboutData( "kpeg", 0, ki18n("KPeg"),
-    version, description, KAboutData::License_GPL, notice);
-    aboutData.addAuthor(ki18n("Graeme Gott"), ki18n("Original author"), "graeme@gottcode.org");
-    aboutData.addAuthor(ki18n("Ronny Yabar Aizcorbe"), ki18n("Developer and current maintainer"), "ronnycontacto@gmail.com");			 
-    KCmdLineArgs::init(argc, argv, &aboutData);
+    KAboutData aboutData(QLatin1String("kpeg"), i18n("KPeg"), QLatin1String("0.2"));
+    aboutData.setShortDescription(i18n("Peg Solitaire game"));
+    aboutData.setLicense(KAboutLicense::GPL);
+    aboutData.setCopyrightStatement(i18n("(c) 2009, Graeme Gott\n"
+                                    "(c) 2010, Ronny Yabar Aizcorbe\n"));
+    aboutData.addAuthor(i18n("Ronny Yabar Aizcorbe"),
+            i18n("Developer and current maintainer"),
+            QLatin1String("ronnycontacto@gmail.com"));
+    aboutData.addAuthor(i18n("Graeme Gott"), 
+			i18n("Original author"), 
+			QLatin1String("graeme@gottcode.org"));
 
-    KApplication app;
-    KGlobal::locale()->insertCatalog("libkdegames");
+    QCommandLineParser parser;
+    KAboutData::setApplicationData(aboutData);
+    parser.addVersionOption();
+    parser.addHelpOption();
+    aboutData.setupCommandLine(&parser);
+    parser.process(app);
+    aboutData.processCommandLine(&parser);
+
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kpeg")));
 
     KpegMainWindow* window = new KpegMainWindow;
     window->show();

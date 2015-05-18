@@ -26,16 +26,14 @@
 #include "puzzle.h"
 #include "settings.h"
 
+#include <QUndoStack>
+
 #include <KConfigGroup>
 #include <KGamePopupItem>
 #include <KgTheme>
 #include <KgThemeProvider>
-#include <KGameRenderer>
-#include <KGameRenderedItem>
-#include <KGlobal>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KSharedConfig>
-#include <KUndoStack>
 
 inline uint qHash(const QPoint& key)
 {
@@ -49,12 +47,12 @@ static KgThemeProvider* provider()
     return prov;
 }
 
-Board::Board(KUndoStack* moves, QWidget* parent)
+Board::Board(QWidget* parent)
         : QGraphicsView(parent),
-        m_status(0),
-        m_moves(moves),
+        m_status(0), 
         m_renderer(provider())
 {
+    m_moves = new QUndoStack();
     QGraphicsScene* scene = new QGraphicsScene(this);
     setScene(scene);
     // Load theme
@@ -163,9 +161,9 @@ void Board::move(const QPoint& old_hole, const QPoint& new_hole)
         m_moves->clear();
 
         // Remove saved game
-        KConfigGroup savegame = KGlobal::config()->group("Game");
+        KConfig *config = KSharedConfig::openConfig().data();
+        KConfigGroup savegame = config->group("Game");
         savegame.writeEntry("Moves", QStringList());
-        
     }
 }
 
@@ -198,7 +196,7 @@ void Board::setGamePaused(bool paused)
 void Board::drawBackground(QPainter* painter, const QRectF& rect)
 {
     if (m_theme->isValid()) {
-        m_theme->render(painter, QString("background"), rect);
+        m_theme->render(painter, QLatin1String("background"), rect);
     }
 }
 
