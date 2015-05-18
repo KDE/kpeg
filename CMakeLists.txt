@@ -42,5 +42,5 @@ add_subdirectory(icons)
 add_subdirectory(themes)
 add_subdirectory(doc)
 
-install( PROGRAMS org.kde.kpeg.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
+install(PROGRAMS org.kde.kpeg.desktop  DESTINATION  ${KDE_INSTALL_APPDIR})
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
