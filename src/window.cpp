@@ -66,9 +66,9 @@ KpegMainWindow::KpegMainWindow()
     m_movesLabel->setText(i18n("Moves: %1", QLatin1String("0")));
     m_timeLabel->setText(i18n("Time: %1", QLatin1String("00:00")));
 
-    m_statusBar->insertPermanentWidget(0, m_levelLabel);
-    m_statusBar->insertPermanentWidget(1, m_movesLabel);
-    m_statusBar->insertPermanentWidget(2, m_timeLabel);
+    m_statusBar->addPermanentWidget(m_levelLabel, 1);
+    m_statusBar->addPermanentWidget(m_movesLabel, 2);
+    m_statusBar->addPermanentWidget(m_timeLabel, 3);
 
     setupActions();
     setupGUI();
