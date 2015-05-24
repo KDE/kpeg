@@ -109,6 +109,11 @@ void KpegMainWindow::setupActions()
     action->setEnabled(false);
     connect(m_moves, SIGNAL(canRedoChanged(bool)), action, SLOT(setEnabled(bool)));
     
+    m_playSoundsAction = new KToggleAction(i18n("&Play Sounds"), this);
+    actionCollection()->addAction(QLatin1String("play_sounds"), m_playSoundsAction);
+    m_playSoundsAction->setChecked(KpegSettings::playSounds());
+    connect(m_playSoundsAction, SIGNAL(triggered(bool)), this, SLOT(setSounds(bool)));
+    
     Kg::difficulty()->addStandardLevelRange(
         KgDifficultyLevel::Easy, KgDifficultyLevel::VeryHard
     );
@@ -294,6 +299,12 @@ void KpegMainWindow::levelChanged()
 {
     KpegSettings::self()->save();
     loadGame();
+}
+
+void KpegMainWindow::setSounds(bool enable)
+{
+    KpegSettings::setPlaySounds(enable);
+    KpegSettings::self()->save();
 }
 
 void KpegMainWindow::showHighscores()

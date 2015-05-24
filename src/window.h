@@ -50,6 +50,7 @@ private slots:
     void pauseGame(bool paused);
     void updateMoves(int count);
     void levelChanged();
+    void setSounds(bool enable);
     void showHighscores();
 
 private:
@@ -65,6 +66,7 @@ private:
     QUndoStack* m_moves;
     KGameClock* m_gameClock;
     KToggleAction* m_actionPause;
+    KToggleAction* m_playSoundsAction;
 
     int m_difficulty;
     int m_algorithm;
