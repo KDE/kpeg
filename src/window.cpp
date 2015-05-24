@@ -170,7 +170,8 @@ void KpegMainWindow::newGame()
     }
 
     delete dialog;
-    m_timeLabel->setText(i18n("Time: %1", QLatin1String("00:00")));
+    updateMoves(0);
+    updateTimer(QLatin1String("00:00"));
 }
 
 void KpegMainWindow::restartGame()
@@ -180,6 +181,7 @@ void KpegMainWindow::restartGame()
     }
     m_gameClock->restart();
     m_gameClock->resume();
+    updateMoves(0);
 }
 
 void KpegMainWindow::configureSettings()

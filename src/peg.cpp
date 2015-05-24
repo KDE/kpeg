@@ -27,12 +27,6 @@
 #include <QGraphicsDropShadowEffect>
 #include <QStandardPaths>
 
-
-Peg::Peg()
-{
-    count = 0;
-}
-
 Peg::Peg(const QPoint& hole, Board* board, QGraphicsItem* parent)
         : QGraphicsSvgItem(parent),
         m_hole(hole),
@@ -77,8 +71,6 @@ void Peg::mousePressEvent(QGraphicsSceneMouseEvent* event)
 void Peg::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
     showAvailableHoles(false);
-    count++;
-    emit movesCountChanged(count);
 
     QPoint hole = ((mapToScene(boundingRect().center()) / 22.f) - QPointF(0.5f, 0.5f)).toPoint();
     if (m_holes.contains(hole)) {

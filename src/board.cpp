@@ -48,7 +48,8 @@ static KgThemeProvider* provider()
 
 Board::Board(QWidget* parent)
         : QGraphicsView(parent),
-        m_status(0), 
+        m_status(0),
+        m_movesCount(0),
         m_renderer(provider())
 {
     m_moves = new QUndoStack();
@@ -57,9 +58,6 @@ Board::Board(QWidget* parent)
     // Load theme
     m_theme = new QSvgRenderer(this);  
     setTheme();
-
-    m_peg = new Peg();
-    connect(m_peg, SIGNAL(movesCountChanged(int)), SIGNAL(countChanged(int)));
 
     m_soundMove = new KgSound(QStandardPaths::locate(QStandardPaths::DataLocation,
                                                     QLatin1Literal("sounds/move.wav")), this);
@@ -92,6 +90,7 @@ void Board::generate(int difficulty, int algorithm)
 {
     // Remove old puzzle
     m_status = 0;
+    m_movesCount = 0;
     m_message = 0;
     m_moves->clear();
     m_holes.clear();
@@ -159,6 +158,9 @@ void Board::move(const QPoint& old_hole, const QPoint& new_hole)
     // Move peg
     Movement* movement = new Movement(old_hole, new_hole, this);
     m_moves->push(movement);
+
+    m_movesCount++;
+    emit countChanged(m_movesCount);
 
     // Handle finishing the game
     if (checkFinished()) {

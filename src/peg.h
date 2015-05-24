@@ -55,10 +55,6 @@ public:
      * @param hole Where to move the peg.
      */
     void move(QPoint hole);
-    int count;
-
-signals:
-    void movesCountChanged(int);
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event);

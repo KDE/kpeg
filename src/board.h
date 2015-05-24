@@ -119,12 +119,12 @@ private:
 private:
     QHash<QPoint, Hole*> m_holes;
     int m_status;
+    int m_movesCount;
     KGamePopupItem* m_message;
     KGameRenderer m_renderer;
     KgSound *m_soundMove;
     QUndoStack* m_moves;
     QSvgRenderer* m_theme;
-    Peg* m_peg;
 };
 
 #endif // BOARD_H
