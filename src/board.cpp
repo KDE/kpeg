@@ -33,7 +33,6 @@
 #include <KgThemeProvider>
 #include <KLocalizedString>
 #include <KSharedConfig>
-//#include <KgSound>
 
 inline uint qHash(const QPoint& key)
 {
@@ -153,7 +152,9 @@ void Board::generate(int difficulty, int algorithm)
 
 void Board::move(const QPoint& old_hole, const QPoint& new_hole)
 {
-    m_soundMove->start();
+    if (KpegSettings::playSounds()) {
+        m_soundMove->start();
+    }
 
     // Move peg
     Movement* movement = new Movement(old_hole, new_hole, this);

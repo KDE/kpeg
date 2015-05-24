@@ -22,6 +22,7 @@
 #include "peg.h"
 #include "board.h"
 #include "hole.h"
+#include "settings.h"
 
 #include <QGraphicsDropShadowEffect>
 #include <QStandardPaths>
@@ -61,7 +62,10 @@ bool Peg::canMove()
 
 void Peg::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-    m_soundPeg->start();
+    if (KpegSettings::playSounds()) {
+        m_soundPeg->start();
+    }
+    
     findHoles();
     showAvailableHoles(true);
 
