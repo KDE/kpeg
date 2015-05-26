@@ -1,3 +1,19 @@
+2015-05-26 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+        * Documentation updated. Chapters "Introduction" and "How to Play" were modified.
+        * Added chapters "Interface overview" (Game, Move and Settings Menu) to documentation.
+
+2015-05-24 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+        * Set up moves counter. 
+        * Fixed statusbar alignment.
+        * Play Sounds action added to settings.
+
+2015-05-18 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+        * Game ported to KF5. 
+        * Added sounds (Peg pressed and move). 
+        * Fixed some action buttons.
+        * Desktop file replaced.
+        * Game icons replaced.
+
 2012-05-01 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
         * Port from KGameDifficulty to KgDifficulty.
 
