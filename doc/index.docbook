@@ -8,107 +8,259 @@
 ]>
 
 <book id="kpeg" lang="&language;">
-	<bookinfo>
-		<title>The &kpeg; Handbook</title>
+    <bookinfo>
+        <title>The &kpeg; Handbook</title>
+        <authorgroup>
+	    <author>
+	        <personname>
+		    <firstname>Graeme</firstname>
+		    <surname>Gott</surname>
+		    </personname>
+	        <email>graeme@gottcode.org</email>
+	    </author>
+	    <author>
+	        <personname>
+		    <firstname>Ronny</firstname>
+		    <surname>Yabar Aizcorbe</surname>
+		    </personname>
+	        <email>ronnycontacto@gmail.com</email>
+	    </author>
+	<!-- TRANS:ROLES_OF_TRANSLATORS -->
+	</authorgroup>
 
-		<authorgroup>
-			<author>
-				<personname>
-					<firstname>Graeme</firstname>
-					<surname>Gott</surname>
-				</personname>
-				<email>graeme@gottcode.org</email>
-			</author>
-			<!-- TRANS:ROLES_OF_TRANSLATORS -->
-		</authorgroup>
+	<copyright>
+	    <year>2009</year>
+	    <holder>Graeme Gott</holder>
+	</copyright>
+	
+	<copyright>
+	    <year>2015</year>
+	    <holder>Ronny Yabar Aizcorbe</holder>
+	</copyright>
 
-		<copyright>
-			<year>2009</year>
-			<holder>Graeme Gott</holder>
-		</copyright>
+	<legalnotice>&FDLNotice;</legalnotice>
 
-		<legalnotice>&FDLNotice;</legalnotice>
+	<date>2015-05-25</date>
+	<releaseinfo>1.0</releaseinfo>
 
-		<date>2009-03-01</date>
-		<releaseinfo>1.0.80</releaseinfo>
+	<abstract>
+	    <para>
+	    &kpeg; is an implementation of the Peg Solitaire Game.
+	    </para>
+	</abstract>
 
-		<abstract>
-			<para>
-				&kpeg; is a peg elimination game.
-			</para>
-		</abstract>
+        <keywordset>
+	    <keyword>KDE</keyword>
+	    <keyword>kdegames</keyword>
+	    <keyword>game</keyword>
+	    <keyword>KPeg</keyword>
+	    <keyword>board</keyword>
+	    <keyword>solitaire</keyword>
+        </keywordset>
+    </bookinfo>
 
-		<keywordset>
-			<keyword>KDE</keyword>
-			<keyword>kdegames</keyword>
-			<keyword>game</keyword>
-			<keyword>KPeg</keyword>
-			<keyword>board</keyword>
-		</keywordset>
+    <chapter id="introduction">
+	<title>Introduction</title>
+	<para>
+	    &kpeg; is an implementation of the Peg Solitaire Game, a board game for one player involving movement of pegs on a board with holes.
+        </para>
+	<para>
+	    The goal is to remove all pegs from the board until only one peg is left.
+        </para>
+	<screenshot>
+            <screeninfo>A &kpeg; screenshot</screeninfo>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="kpeg.png" format="PNG"/>
+                </imageobject>
+                <textobject>
+                    <phrase>A &kpeg; screenshot</phrase>
+                </textobject>
+            </mediaobject>
+        </screenshot>
+    </chapter>
 
-	</bookinfo>
+    <chapter id="how-to-play">
+        <title>How To Play</title>
+	<note><title>Objective:</title><para>Remove all pegs except one.</para></note>
+	<para>
+	    The player is presented with a board of holes containing pegs. The player moves by jumping a peg over another peg into an empty hole; the jumped peg is removed from the board.
+	</para>    
+	<para>    
+	    Only certain jumps are legal: you must jump horizontally, vertically, diagonally and you can jump only one peg at a time. The game is over when no more pegs can be removed. 
+	</para>
+	<para>    
+	    Currently, &kpeg; has 4 leves of difficulty: Easy, Medium, Hard and Super Hard. The difference between levels is the number of pegs to be removed from the board.
+	</para>
+	<para>    
+	    Additionally, there are 3 algorithms to generate the puzzles: Original, Branch and Lines. These algorithms affect the shape and how the pegs are distributed on the board. 
+	</para>
+    </chapter>
+    
+    <chapter id="interface">
+        <title>Interface Overview</title>
+    
+	<sect1 id="game-menu">
+	    <title>The Game Menu</title>
+	    <variablelist>
+		<varlistentry id="game-menu-new">
+		    <term><menuchoice>
+			<shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
+			<guimenu>Game</guimenu>
+			<guimenuitem>New</guimenuitem>
+		    </menuchoice></term>
+		    <listitem><para><action>Starts a new game.</action></para></listitem>
+		</varlistentry>
+		<varlistentry id="game-menu-restart">
+		    <term><menuchoice>
+			<shortcut><keycombo action="simul"><keycap>F5</keycap></keycombo></shortcut>
+			<guimenu>Game</guimenu>
+			<guimenuitem>Restarts game</guimenuitem>
+		    </menuchoice></term>
+		    <listitem><para><action>Restarts the game.</action></para></listitem>
+		</varlistentry>
+		<varlistentry id="game-menu-pause">
+		    <term><menuchoice>
+			<shortcut><keycombo action="simul"><keycap>P</keycap></keycombo></shortcut>
+			<guimenu>Game</guimenu>
+			<guimenuitem>Pause</guimenuitem>
+		    </menuchoice></term>
+		    <listitem><para><action>Pause</action> the game.</para></listitem>
+		</varlistentry>
+		<varlistentry id="game-menu-highscores">
+		    <term><menuchoice>
+			<shortcut><keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
+			<guimenu>Game</guimenu>
+			<guimenuitem>Show High Scores</guimenuitem>
+		    </menuchoice></term>
+		    <listitem><para><action>Opens a dialog that displays a high scores table.</action></para></listitem>
+		</varlistentry>
+		<varlistentry id="game-menu-quit">
+		    <term><menuchoice>
+			<shortcut><keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
+			<guimenu>Game</guimenu>
+			<guimenuitem>Quit</guimenuitem>
+		    </menuchoice></term>
+		    <listitem><para><action>Exit &kpeg;</action></para></listitem>
+		</varlistentry>
+	    </variablelist>
+	</sect1>
+    
+	<sect1 id="move-menu">
+	    <title>The Move Menu</title>
+            <variablelist>
+	        <varlistentry id="move-menu-undo">
+		    <term><menuchoice>
+		        <shortcut><keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
+			<guimenu>Move</guimenu>
+			<guimenuitem>Undo</guimenuitem>
+		    </menuchoice></term>
+		    <listitem><para><action>Undo</action> your last move, repeatedly if required.</para></listitem>
+		</varlistentry>
+		<varlistentry id="move-menu-redo">
+		    <term><menuchoice>
+		        <shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>Z</keycap></keycombo></shortcut>
+			<guimenu>Move</guimenu>
+			<guimenuitem>Redo</guimenuitem>
+		    </menuchoice></term>
+		    <listitem><para><action>Redo</action> a move that was undone, repeatedly if required.</para></listitem>
+	        </varlistentry>
+	    </variablelist>
+	</sect1>
+    
+	<sect1 id="settings-menu">
+	    <title>The Settings Menu</title>
+	    <variablelist>
+	        <varlistentry id="settings-menu-sounds">
+		    <term><menuchoice>
+		        <guimenu>Settings</guimenu>
+			<guimenuitem>Play Sounds</guimenuitem>
+		    </menuchoice></term>
+		<listitem><para><action>Enables/Disables sounds in the game.</action></para></listitem>
+	        </varlistentry>
+		<varlistentry id="settings-menu-difficulty">
+		    <term><menuchoice>
+		        <guimenu>Settings</guimenu>
+			<guimenuitem>Difficulty</guimenuitem>
+		    </menuchoice></term>
+		<listitem><para>Sets the difficulty to be <guimenuitem>Easy</guimenuitem> , <guimenuitem>Medium</guimenuitem>, <guimenuitem>Hard</guimenuitem> or <guimenuitem>Very Hard</guimenuitem>.</para></listitem>
+	        </varlistentry>
+		<varlistentry id="settings-menu-settings">
+		    <term><menuchoice>
+		        <guimenu>Settings</guimenu>
+			<guimenuitem>Configure &kappname;...</guimenuitem>
+		    </menuchoice></term>
+		    <listitem><para><action>Opens a dialog to configure &kappname;.</action> See <link linkend="configuration">Game Configuration</link> section for details.</para></listitem>
+	        </varlistentry>
 
-	<chapter id="introduction">
-		<title>Introduction</title>
-		<para>
-			&kpeg; is a peg elimination game. The object of the game is to remove all but one peg from the board.
-		</para>
-	</chapter>
+	    </variablelist>
+	    <para>
+	        Additionally &kpeg; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
+		menu items, for more information read the sections about the <ulink url="help:/fundamentals/ui.html#menus-settings">Settings Menu</ulink> and
+		<ulink url="help:/fundamentals/ui.html#menus-help">Help Menu</ulink>
+		of the &kde; Fundamentals.
+	    </para>
+	</sect1>
+    </chapter>
 
-	<chapter id="how-to-play">
-		<title>How To Play</title>
-		<para>
-			The player is presented with a board of holes containing pegs. The player moves by jumping a peg over another peg into an empty hole; the jumped peg is removed from the board. The game is over when no more pegs can be removed.
-		</para>
-	</chapter>
+    <chapter id="configuration">
+        <title>Game Configuration</title>
+	<para>
+	    The &kpeg; configuration dialog allows you to select visual themes for &kpeg;.
+	</para>
+	<para>
+	    To select a new theme simply choose the theme's name from the selection list.
+	</para>
+	
+	<note>
+	<title>Note:</title>
+	<para>
+	    For your convenience a quick preview screenshot will be displayed on the right hand sided of the selection list as soon as you select the theme you are interested in.
+	</para>
+	</note>
+	
+	<para>
+	    Once you are satisfied with the theme you have selected you can either click the <guibutton>Apply</guibutton>, or simply click the <guibutton>Ok</guibutton> button, located at the bottom part of this dialog.
+	</para>
+	<para>
+	    If, however you are dissatisfied with your selection – simply click <guimenu>Cancel</guimenu> to discard the changes.
+	</para>
+    </chapter>
 
-	<chapter id="configuration">
-		<title>Game Configuration</title>
-		<para>
-			The &kpeg; configuration dialog allows you to select visual themes for &kpeg;.
-		</para>
-		<para>
-			To select a new theme simply choose the theme's name from the selection list.
-		</para>
-		<note>
-			<title>Note:</title>
-			<para>
-				For your convenience a quick preview screenshot will be displayed on the right hand sided of the selection list as soon as you select the theme you are interested in.
-			</para>
-		</note>
-		<para>
-			Once you are satisfied with the theme you have selected you can either click the <guibutton>Apply</guibutton>, or simply click the <guibutton>Ok</guibutton> button, located at the bottom part of this dialog.
-		</para>
-		<para>
-			If, however you are dissatisfied with your selection – simply click <guimenu>Cancel</guimenu> to discard the changes.
-		</para>
-	</chapter>
+    <chapter id="credits">
+        <title>Credits and License</title>
+	<para>&kpeg;</para>
+	<para>
+	    Program copyright 2009 Graeme Gott <email>graeme@gottcode.org</email>
+	</para>
+	<para>
+	    Documentation Copyright &copy; 2009 Graeme Gott <email>graeme@gottcode.org</email>
+	</para>
+	
+	<para>
+	    Program copyright 2010 Ronny Yabar Aizcorbe <email>ronnycontacto@gmail.com</email>
+	</para>
+	<para>
+	    Documentation Copyright &copy; 2015 Ronny Yabar Aizcorbe <email>ronnycontacto@gmail.com</email>
+	</para>
 
-	<chapter id="credits">
-		<title>Credits and License</title>
-		<para>&kpeg;</para>
-		<para>
-			Program copyright 2009 Graeme Gott <email>graeme@gottcode.org</email>
-		</para>
-		<para>
-			Documentation Copyright &copy; 2009 Graeme Gott <email>graeme@gottcode.org</email>
-		</para>
+	<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
 
-		<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+	&underFDL;
 
-		&underFDL;
+	&underGPL;
+	
+    </chapter>
 
-		&underGPL;
+    <appendix id="installation">
+        <title>Installation</title>
 
-	</chapter>
+        &install.intro.documentation;
 
-	<appendix id="installation">
-		<title>Installation</title>
+        <sect1 id="Compilation">
+        <title>Compilation and Installation</title>
+        &install.compile.documentation;
 
-		&install.intro.documentation;
-
-		&install.compile.documentation;
-
-	</appendix>
-
+        </sect1>
+    </appendix>
 </book>
