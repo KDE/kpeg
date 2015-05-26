@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
     migrate.setUiFiles(QStringList() << QStringLiteral("kpegui.rc"));
     migrate.migrate();
   
-    KAboutData aboutData(QLatin1String("kpeg"), i18n("KPeg"), QLatin1String("0.2"));
+    KAboutData aboutData(QLatin1String("kpeg"), i18n("KPeg"), QLatin1String("0.3"));
     aboutData.setShortDescription(i18n("Peg Solitaire game"));
     aboutData.setLicense(KAboutLicense::GPL);
     aboutData.setCopyrightStatement(i18n("(c) 2009, Graeme Gott\n"
