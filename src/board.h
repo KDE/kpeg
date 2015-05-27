@@ -102,6 +102,7 @@ public:
     */
     void setTheme();
     void setGamePaused(bool paused);
+    void updateMovesCounter(bool isUndo);
     
     KGameRenderer* renderer() { return &m_renderer; }
 

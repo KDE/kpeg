@@ -101,11 +101,11 @@ void KpegMainWindow::setupActions()
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
     KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
 
-    QAction* undoAction = KStandardGameAction::undo(m_moves, SLOT(undo()), actionCollection());
+    QAction* undoAction = KStandardGameAction::undo(this, SLOT(undoMove()), actionCollection());
     undoAction->setEnabled(false);
     connect(m_moves, SIGNAL(canUndoChanged(bool)), undoAction, SLOT(setEnabled(bool)));
 
-    QAction* redoAction = KStandardGameAction::redo(m_moves, SLOT(redo()), actionCollection());
+    QAction* redoAction = KStandardGameAction::redo(this, SLOT(redoMove()), actionCollection());
     redoAction->setEnabled(false);
     connect(m_moves, SIGNAL(canRedoChanged(bool)), redoAction, SLOT(setEnabled(bool)));
     
@@ -291,4 +291,16 @@ void KpegMainWindow::showHighscores()
         Kg::difficulty()->currentLevel()->title()
     ));
     ksdialog.exec();
+}
+
+void KpegMainWindow::undoMove()
+{
+    m_moves->undo();
+    m_board->updateMovesCounter(true);
+}
+
+void KpegMainWindow::redoMove()
+{
+    m_moves->redo();
+    m_board->updateMovesCounter(false);
 }

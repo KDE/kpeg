@@ -52,6 +52,8 @@ private slots:
     void levelChanged();
     void setSounds(bool enable);
     void showHighscores();
+    void undoMove();
+    void redoMove();
 
 private:
     void startGame(int);

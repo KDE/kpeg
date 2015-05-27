@@ -243,3 +243,15 @@ void Board::showMessage()
         break;
     }
 }
+
+void Board::updateMovesCounter(bool isUndo)
+{
+    if (isUndo) {
+        m_movesCount--;
+    } else {
+        m_movesCount++;
+    }
+
+    emit countChanged(m_movesCount);
+}
+
