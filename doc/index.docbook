@@ -90,7 +90,7 @@
 	    Only certain jumps are legal: you must jump horizontally, vertically, diagonally and you can jump only one peg at a time. The game is over when no more pegs can be removed. 
 	</para>
 	<para>    
-	    Currently, &kpeg; has 4 leves of difficulty: Easy, Medium, Hard and Super Hard. The difference between levels is the number of pegs to be removed from the board.
+	    Currently, &kpeg; has 4 levels of difficulty: Easy, Medium, Hard and Super Hard. The difference between levels is the number of pegs to be removed from the board.
 	</para>
 	<para>    
 	    Additionally, there are 3 algorithms to generate the puzzles: Original, Branch and Lines. These algorithms affect the shape and how the pegs are distributed on the board. 
@@ -115,7 +115,7 @@
 		    <term><menuchoice>
 			<shortcut><keycombo action="simul"><keycap>F5</keycap></keycombo></shortcut>
 			<guimenu>Game</guimenu>
-			<guimenuitem>Restarts game</guimenuitem>
+			<guimenuitem>Restart game</guimenuitem>
 		    </menuchoice></term>
 		    <listitem><para><action>Restarts the game.</action></para></listitem>
 		</varlistentry>
