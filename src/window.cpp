@@ -73,7 +73,7 @@ KpegMainWindow::KpegMainWindow()
     setupActions();
     setupGUI();
 
-    loadGame();
+    startGame(m_algorithm);
 }
 
 KpegMainWindow::~KpegMainWindow()
@@ -203,32 +203,6 @@ void KpegMainWindow::loadSettings()
     KConfigGroup savegame = config->group("Game");
 }
 
-void KpegMainWindow::loadGame()
-{
-    // Load board
-    KConfig *config = KSharedConfig::openConfig().data();
-    KConfigGroup savegame = config->group("Game");
-    QStringList moves = savegame.readEntry("Moves", QStringList());
-
-    startGame(m_algorithm);
-
-    // Load moves
-    QRegExp parse(QString::fromLatin1("(-?\\d+)x(-?\\d+):(-?\\d+)x(-?\\d+)"));
-    foreach(const QString& move, moves) {
-        if (!parse.exactMatch(move)) {
-            continue;
-        }
-
-        QPoint old_hole(parse.cap(1).toInt(), parse.cap(2).toInt());
-        QPoint new_hole(parse.cap(3).toInt(), parse.cap(4).toInt());
-        if (m_board->isPeg(old_hole) && m_board->isHole(new_hole)) {
-            m_board->move(old_hole, new_hole);
-        } else {
-            qWarning("Invalid move: %dx%d to %dx%d", old_hole.x(), old_hole.y(), new_hole.x(), new_hole.y());
-        }
-    }
-}
-
 void KpegMainWindow::startGame(int algorithm)
 {
     m_actionPause->setEnabled(true);
@@ -300,7 +274,7 @@ void KpegMainWindow::updateTimer(const QString& timeStr)
 void KpegMainWindow::levelChanged()
 {
     KpegSettings::self()->save();
-    loadGame();
+    startGame(m_algorithm);
 }
 
 void KpegMainWindow::setSounds(bool enable)

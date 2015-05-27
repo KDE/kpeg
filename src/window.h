@@ -54,7 +54,6 @@ private slots:
     void showHighscores();
 
 private:
-    void loadGame();
     void startGame(int);
     void setupActions();
 
