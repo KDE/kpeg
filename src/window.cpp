@@ -56,7 +56,7 @@ KpegMainWindow::KpegMainWindow()
     m_gameClock = new KGameClock(this, KGameClock::MinSecOnly);
     connect(m_gameClock, SIGNAL(timeChanged(const QString&)), SLOT(updateTimer(const QString&)));
 
-    m_board = new Board(this);
+    m_board = new Board(m_moves, this);
     connect(m_board, SIGNAL(countChanged(int)), SLOT(updateMoves(int)));
 
     setCentralWidget(m_board);
@@ -101,13 +101,13 @@ void KpegMainWindow::setupActions()
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
     KStandardAction::preferences(this, SLOT(configureSettings()), actionCollection());
 
-    QAction* action = KStandardGameAction::undo(m_moves, SLOT(undo()), actionCollection());
-    action->setEnabled(false);
-    connect(m_moves, SIGNAL(canUndoChanged(bool)), action, SLOT(setEnabled(bool)));
+    QAction* undoAction = KStandardGameAction::undo(m_moves, SLOT(undo()), actionCollection());
+    undoAction->setEnabled(false);
+    connect(m_moves, SIGNAL(canUndoChanged(bool)), undoAction, SLOT(setEnabled(bool)));
 
-    action = KStandardGameAction::redo(m_moves, SLOT(redo()), actionCollection());
-    action->setEnabled(false);
-    connect(m_moves, SIGNAL(canRedoChanged(bool)), action, SLOT(setEnabled(bool)));
+    QAction* redoAction = KStandardGameAction::redo(m_moves, SLOT(redo()), actionCollection());
+    redoAction->setEnabled(false);
+    connect(m_moves, SIGNAL(canRedoChanged(bool)), redoAction, SLOT(setEnabled(bool)));
     
     m_playSoundsAction = new KToggleAction(i18n("&Play Sounds"), this);
     actionCollection()->addAction(QLatin1String("play_sounds"), m_playSoundsAction);

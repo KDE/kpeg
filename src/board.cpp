@@ -46,13 +46,13 @@ static KgThemeProvider* provider()
     return prov;
 }
 
-Board::Board(QWidget* parent)
+Board::Board(QUndoStack* moves, QWidget* parent)
         : QGraphicsView(parent),
         m_status(0),
         m_movesCount(0),
-        m_renderer(provider())
+        m_renderer(provider()),
+        m_moves(moves)
 {
-    m_moves = new QUndoStack();
     QGraphicsScene* scene = new QGraphicsScene(this);
     setScene(scene);
     // Load theme

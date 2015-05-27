@@ -49,7 +49,7 @@ public:
     * @param moves Where to store the history of peg movements.
     * @param parent The game board's parent widget.
     */
-    explicit Board(QWidget* parent = 0);
+    explicit Board(QUndoStack* moves, QWidget* parent = 0);
 
     /**
     * Returns true if there is only one peg left; otherwise returns false.
@@ -123,8 +123,8 @@ private:
     KGamePopupItem* m_message;
     KGameRenderer m_renderer;
     KgSound *m_soundMove;
-    QUndoStack* m_moves;
     QSvgRenderer* m_theme;
+    QUndoStack* m_moves;
 };
 
 #endif // BOARD_H
