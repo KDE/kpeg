@@ -1,3 +1,8 @@
+2015-05-27 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+        * Fixed Undo/Redo actions.
+        * Stopped reading old moves.
+        * Updated moves counter in the statusbar after Undo/Redo actions.
+
 2015-05-26 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
         * Documentation updated. Chapters "Introduction" and "How to Play" were modified.
         * Added chapters "Interface overview" (Game, Move and Settings Menu) to documentation.
