@@ -38,6 +38,8 @@ int main(int argc, char* argv[])
     migrate.setConfigFiles(QStringList() << QStringLiteral("kpegrc"));
     migrate.setUiFiles(QStringList() << QStringLiteral("kpegui.rc"));
     migrate.migrate();
+    
+    KLocalizedString::setApplicationDomain("kpeg");
   
     KAboutData aboutData(QLatin1String("kpeg"), i18n("KPeg"), QLatin1String("0.3"));
     aboutData.setShortDescription(i18n("Peg Solitaire game"));
