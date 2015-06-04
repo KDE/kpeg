@@ -1,6 +1,18 @@
 [Desktop Entry]
 Name=KPeg
+Name[es]=KPeg
+Name[pt]=KPeg
+Name[pt_BR]=KPeg
+Name[sv]=Solitär
+Name[uk]=KPeg
+Name[x-test]=xxKPegxx
 GenericName=Peg Solitaire Game
+GenericName[es]=Juego del solitario Peg
+GenericName[pt]=Jogo de Pinos Solitário
+GenericName[pt_BR]=Jogo Solitário de Resta Um
+GenericName[sv]=Brädspelet Solitär
+GenericName[uk]=Гра у фішки
+GenericName[x-test]=xxPeg Solitaire Gamexx
 Icon=kpeg
 Type=Application
 Exec=kpeg -qwindowtitle %c
