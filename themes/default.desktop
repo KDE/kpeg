@@ -1,7 +1,15 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default
+Name[nl]=Standaard
+Name[pt_BR]=Padrão
+Name[sv]=Standard
+Name[x-test]=xxDefaultxx
 Description=Default theme for KPeg
+Description[nl]=Standaardthema voor KPeg
+Description[pt_BR]=Tema padrão do KPeg
+Description[sv]=Standardtema för Solitär
+Description[x-test]=xxDefault theme for KPegxx
 FileName=default.svgz
 Author=Ronny Yabar Aizcorbe
 AuthorEmail=ronnycontacto@gmail.com

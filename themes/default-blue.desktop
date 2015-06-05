@@ -1,7 +1,15 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default - Blue
+Name[nl]=Standaard -- blauw
+Name[pt_BR]=Padrão - Azul
+Name[sv]=Standard - Blå
+Name[x-test]=xxDefault - Bluexx
 Description=Default theme with blue pegs
+Description[nl]=Standaardthema met blauwe pinnen
+Description[pt_BR]=Tema padrão com peças azuis
+Description[sv]=Standardtema med blåa pjäser
+Description[x-test]=xxDefault theme with blue pegsxx
 FileName=default-blue.svgz
 Author=Ronny Yabar Aizcorbe
 AuthorEmail=ronnycontacto@gmail.com
