@@ -1,14 +1,24 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default
+Name[ca]=Per defecte
+Name[es]=Por omisión
 Name[nl]=Standaard
+Name[pl]=Domyślne
+Name[pt]=Predefinição
 Name[pt_BR]=Padrão
 Name[sv]=Standard
+Name[uk]=Типова
 Name[x-test]=xxDefaultxx
 Description=Default theme for KPeg
+Description[ca]=Tema per defecte pel KPeg
+Description[es]=Tema por omisión para KPeg
 Description[nl]=Standaardthema voor KPeg
+Description[pl]=Domyślny wystrój dla KPeg
+Description[pt]=Tema predefinido do KPeg
 Description[pt_BR]=Tema padrão do KPeg
 Description[sv]=Standardtema för Solitär
+Description[uk]=Типова тема для KPeg
 Description[x-test]=xxDefault theme for KPegxx
 FileName=default.svgz
 Author=Ronny Yabar Aizcorbe

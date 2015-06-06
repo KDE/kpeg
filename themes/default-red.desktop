@@ -1,14 +1,24 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default Red
+Name[ca]=Vermell per defecte
+Name[es]=Rojo por omisión
 Name[nl]=Standaard rood
+Name[pl]=Domyślny czerwony
+Name[pt]=Predefinição - Vermelho
 Name[pt_BR]=Padrão - Vermelho
 Name[sv]=Standard - Röd
+Name[uk]=Типова — Червона
 Name[x-test]=xxDefault Redxx
 Description=Wood theme for KPeg
+Description[ca]=Tema de fusta pel KPeg
+Description[es]=Tema de madera para KPeg
 Description[nl]=Houtthema voor KPeg
+Description[pl]=Drewniany wystrój dla KPeg
+Description[pt]=Tema de madeira para o KPeg
 Description[pt_BR]=Tema de madeira para o KPeg
 Description[sv]=Trätema för Solitär
+Description[uk]=Тема з візерунками деревини для KPeg
 Description[x-test]=xxWood theme for KPegxx
 FileName=default-red.svgz
 Author=Ronny Yabar Aizcorbe
