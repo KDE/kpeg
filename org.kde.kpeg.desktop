@@ -2,6 +2,7 @@
 Name=KPeg
 Name[ca]=KPeg
 Name[es]=KPeg
+Name[gl]=KPeg
 Name[nl]=KPeg
 Name[pl]=KPeg
 Name[pt]=KPeg
@@ -12,6 +13,7 @@ Name[x-test]=xxKPegxx
 GenericName=Peg Solitaire Game
 GenericName[ca]=Joc del solitari Peg
 GenericName[es]=Juego del solitario Peg
+GenericName[gl]=Xogo de resta un
 GenericName[nl]=Solitaire-spel Peg
 GenericName[pl]=Gra w pasjansa Peg
 GenericName[pt]=Jogo Solitário de Pinos
