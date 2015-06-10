@@ -2,6 +2,7 @@
 VersionFormat=1
 Name=Default
 Name[ca]=Per defecte
+Name[de]=Standard
 Name[es]=Por omisión
 Name[gl]=Predeterminado
 Name[nl]=Standaard
@@ -13,6 +14,7 @@ Name[uk]=Типова
 Name[x-test]=xxDefaultxx
 Description=Default theme for KPeg
 Description[ca]=Tema per defecte pel KPeg
+Description[de]=Das Standard-Design für KPeg
 Description[es]=Tema por omisión para KPeg
 Description[gl]=Tema predeterminado para KPeg.
 Description[nl]=Standaardthema voor KPeg

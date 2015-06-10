@@ -2,6 +2,7 @@
 VersionFormat=1
 Name=Default Red
 Name[ca]=Vermell per defecte
+Name[de]=Standard – Rot
 Name[es]=Rojo por omisión
 Name[gl]=Predeterminado vermello
 Name[nl]=Standaard rood
@@ -13,6 +14,7 @@ Name[uk]=Типова — Червона
 Name[x-test]=xxDefault Redxx
 Description=Wood theme for KPeg
 Description[ca]=Tema de fusta pel KPeg
+Description[de]=Ein Holz-Design für KPeg
 Description[es]=Tema de madera para KPeg
 Description[gl]=Tema de madeira para KPeg.
 Description[nl]=Houtthema voor KPeg

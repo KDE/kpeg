@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=KPeg
 Name[ca]=KPeg
+Name[de]=KPeg
 Name[es]=KPeg
 Name[gl]=KPeg
 Name[nl]=KPeg
@@ -12,6 +13,7 @@ Name[uk]=KPeg
 Name[x-test]=xxKPegxx
 GenericName=Peg Solitaire Game
 GenericName[ca]=Joc del solitari Peg
+GenericName[de]=Peg-Solitär
 GenericName[es]=Juego del solitario Peg
 GenericName[gl]=Xogo de resta un
 GenericName[nl]=Solitaire-spel Peg
