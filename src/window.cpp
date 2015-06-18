@@ -34,17 +34,16 @@
 #include <KActionCollection>
 #include <KStandardGameAction>
 #include <KToggleAction>
-#include <KComboBox>
 #include <KConfigDialog>
 #include <KConfigGroup>
 #include <KScoreDialog>
 #include <KgThemeSelector>
 #include <KGameClock>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
 
-
+#include <QComboBox>
 #include <QFormLayout>
 #include <ctime>
 
@@ -154,7 +153,7 @@ void KpegMainWindow::newGame()
     QWidget* contents = new QWidget(dialog);
     mainLayout->addWidget(contents);
 
-    KComboBox* algorithms_box = new KComboBox(contents);
+    QComboBox* algorithms_box = new QComboBox(contents);
     mainLayout->addWidget(algorithms_box);
     algorithms_box->addItem(i18n("Original"), 1);
     algorithms_box->addItem(i18n("Branch"), 2);

@@ -23,7 +23,6 @@ target_link_libraries(kpeg
         KF5::DBusAddons
         Qt5::Widgets
         Qt5::Svg
-        KF5::KDELibs4Support
 )
 
 install(TARGETS kpeg ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

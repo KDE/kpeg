@@ -21,8 +21,7 @@ find_package(KF5 REQUIRED COMPONENTS
     Completion 
     JobWidgets
     XmlGui
-    KIO
-    KDELibs4Support)
+    KIO)
 
 find_package(KF5KDEGames 4.9.0 REQUIRED)
 
