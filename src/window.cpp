@@ -141,14 +141,7 @@ void KpegMainWindow::newGame()
     QVBoxLayout *mainLayout = new QVBoxLayout;
     dialog->setLayout(mainLayout);
     mainLayout->addWidget(mainWidget);
-
-    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
-    okButton->setDefault(true);
-    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    dialog->connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
-    dialog->connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
-    mainLayout->addWidget(buttonBox);
-
+    
     // Create contents of dialog
     QWidget* contents = new QWidget(dialog);
     mainLayout->addWidget(contents);
@@ -163,6 +156,13 @@ void KpegMainWindow::newGame()
     // Layout dialog
     QFormLayout* box_layout = new QFormLayout(contents);
     box_layout->addRow(i18n("Algorithm:"), algorithms_box);
+
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    dialog->connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
+    dialog->connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
+    mainLayout->addWidget(buttonBox);
 
     if (dialog->exec() == QDialog::Accepted) {
         startGame(algorithms_box->itemData(algorithms_box->currentIndex()).toInt());
