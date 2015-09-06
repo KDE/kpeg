@@ -23,7 +23,7 @@
 		    <firstname>Ronny</firstname>
 		    <surname>Yabar Aizcorbe</surname>
 		    </personname>
-	        <email>ronnycontacto@gmail.com</email>
+	        <email>ronny@kde.org</email>
 	    </author>
 	<!-- TRANS:ROLES_OF_TRANSLATORS -->
 	</authorgroup>
@@ -238,10 +238,10 @@
 	</para>
 	
 	<para>
-	    Program copyright 2010 Ronny Yabar Aizcorbe <email>ronnycontacto@gmail.com</email>
+	    Program copyright 2010 Ronny Yabar Aizcorbe <email>ronny@kde.org</email>
 	</para>
 	<para>
-	    Documentation Copyright &copy; 2015 Ronny Yabar Aizcorbe <email>ronnycontacto@gmail.com</email>
+	    Documentation Copyright &copy; 2015 Ronny Yabar Aizcorbe <email>ronny@kde.org</email>
 	</para>
 
 	<!-- TRANS:CREDIT_FOR_TRANSLATORS -->

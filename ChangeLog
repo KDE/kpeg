@@ -1,34 +1,34 @@
-2015-06-18 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+2015-06-18 Ronny Yabar Aizcorbe <ronny@kde.org>
         * Remove kdelibs4support.
 
-2015-05-27 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+2015-05-27 Ronny Yabar Aizcorbe <ronny@kde.org>
         * Fixed Undo/Redo actions.
         * Stopped reading old moves.
         * Updated moves counter in the statusbar after Undo/Redo actions.
 
-2015-05-26 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+2015-05-26 Ronny Yabar Aizcorbe <ronny@kde.org>
         * Documentation updated. Chapters "Introduction" and "How to Play" were modified.
         * Added chapters "Interface overview" (Game, Move and Settings Menu) to documentation.
 
-2015-05-24 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+2015-05-24 Ronny Yabar Aizcorbe <ronny@kde.org>
         * Set up moves counter. 
         * Fixed statusbar alignment.
         * Play Sounds action added to settings.
 
-2015-05-18 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+2015-05-18 Ronny Yabar Aizcorbe <ronny@kde.org>
         * Game ported to KF5. 
         * Added sounds (Peg pressed and move). 
         * Fixed some action buttons.
         * Desktop file replaced.
         * Game icons replaced.
 
-2012-05-01 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+2012-05-01 Ronny Yabar Aizcorbe <ronny@kde.org>
         * Port from KGameDifficulty to KgDifficulty.
 
-2012-04-30 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+2012-04-30 Ronny Yabar Aizcorbe <ronny@kde.org>
         * Port to KGameRenderer.
         
-2009-12-01 Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+2009-12-01 Ronny Yabar Aizcorbe <ronny@kde.org>
         * Show timer.
         * Add Pause Action.
         * Add difficulty levels.

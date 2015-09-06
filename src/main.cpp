@@ -1,6 +1,6 @@
 /*
   Copyright 2009  Graeme Gott <graeme@gottcode.org>
-  Copyright 2010  Ronny Yabar Aizcorbe <ronnycontacto@gmail.com>
+  Copyright 2010  Ronny Yabar Aizcorbe <ronny@kde.org>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
                                     "(c) 2010, Ronny Yabar Aizcorbe\n"));
     aboutData.addAuthor(i18n("Ronny Yabar Aizcorbe"),
             i18n("Developer and current maintainer"),
-            QLatin1String("ronnycontacto@gmail.com"));
+            QLatin1String("ronny@kde.org"));
     aboutData.addAuthor(i18n("Graeme Gott"), 
 			i18n("Original author"), 
 			QLatin1String("graeme@gottcode.org"));
