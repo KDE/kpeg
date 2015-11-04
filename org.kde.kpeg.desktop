@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=KPeg
 Name[ca]=KPeg
+Name[ca@valencia]=KPeg
 Name[cs]=KPeg
 Name[de]=KPeg
 Name[en_GB]=KPeg
@@ -22,6 +23,7 @@ Name[zh_CN]=KPeg
 Name[zh_TW]=KPeg
 GenericName=Peg Solitaire Game
 GenericName[ca]=Joc del solitari Peg
+GenericName[ca@valencia]=Joc del solitari Peg
 GenericName[de]=Peg-Solitär
 GenericName[en_GB]=Peg Solitaire Game
 GenericName[es]=Juego del solitario Peg

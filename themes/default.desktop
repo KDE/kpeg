@@ -2,6 +2,7 @@
 VersionFormat=1
 Name=Default
 Name[ca]=Per defecte
+Name[ca@valencia]=Per defecte
 Name[cs]=Výchozí
 Name[de]=Standard
 Name[en_GB]=Default
@@ -23,6 +24,7 @@ Name[zh_CN]=默认
 Name[zh_TW]=預設
 Description=Default theme for KPeg
 Description[ca]=Tema per defecte pel KPeg
+Description[ca@valencia]=Tema per defecte pel KPeg
 Description[cs]=Výchozí motiv pro KPeg
 Description[de]=Das Standard-Design für KPeg
 Description[en_GB]=Default theme for KPeg
