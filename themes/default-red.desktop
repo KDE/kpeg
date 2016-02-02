@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default Red
+Name[ast]=Colloráu por defeutu
 Name[ca]=Vermell per defecte
 Name[ca@valencia]=Roig per defecte
 Name[cs]=Výchozí červený
@@ -23,6 +24,7 @@ Name[x-test]=xxDefault Redxx
 Name[zh_CN]=默认红
 Name[zh_TW]=預設紅
 Description=Wood theme for KPeg
+Description[ast]=Tema de madera pa KPeg
 Description[ca]=Tema de fusta pel KPeg
 Description[ca@valencia]=Tema de fusta pel KPeg
 Description[de]=Ein Holz-Design für KPeg
