@@ -1,12 +1,8 @@
 project(kpeg)
 
 set(kpeg_SRCS
-	board.cpp
-	hole.cpp
 	main.cpp
-	movement.cpp
-	peg.cpp
-	puzzle.cpp
+	gameview.cpp
 	window.cpp
 )
 
@@ -28,3 +24,5 @@ target_link_libraries(kpeg
 install(TARGETS kpeg ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kpegui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kpeg)
 install(FILES kpeg.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
+install(DIRECTORY qml DESTINATION ${DATA_INSTALL_DIR}/kpeg)
+
