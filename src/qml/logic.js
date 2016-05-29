@@ -21,6 +21,45 @@ var pegsToWin = 1;
 var board;
 var selectedBoardStyle;
 
+function startNewGame(boardStyle) {
+    selectedBoardStyle = boardStyle
+    board = new Array(maxRow);
+
+    for (var i = 0; i < maxColumn; i++) {
+        board[i] = new Array(maxColumn)
+    }
+
+    for (var row = 0; row < maxRow; row++) {
+        for (var column = 0; column < maxColumn; column++) {
+            board[row][column] = null;
+
+            if (row == Math.floor(maxRow / 2) && column == Math.floor(maxColumn / 2)) {
+                createPegOrHole(row, column, "hole");
+	    } else {
+                createPegOrHole(row, column, "peg");
+	    }
+
+            switch (selectedBoardStyle) {
+	        default:
+                case "English":
+                    if (isEnglishBoardCoord(column, row)) {
+                        board[row][column].visible = true;
+                    } else {
+                        board[row][column].visible = false;
+                    }
+                    break;
+	        case "European":
+                    if (isEuroperanBoardCoord(column, row)) {
+                        board[row][column].visible = true;
+                    } else {
+                        board[row][column].visible = false;
+                    }
+                    break;
+            }
+        }
+    }
+}
+
 var pegComponent
 function createPegOrHole(row, column, pegOrHole) {
 
