@@ -155,6 +155,118 @@ function destroyBoard() {
     delete board;
 }
 
+var lastSelectedPeg;
+var hightlight_peg_left;
+var hightlight_peg_right;
+var hightlight_peg_up;
+var hightlight_peg_down;
+
+function clickPeg(mouseX, mouseY) {
+    var column = Math.floor(mouseX / gameCanvas.pegSize);
+    var row = Math.floor(mouseY / gameCanvas.pegSize);
+    var peg = board[row][column];
+
+    console.log("Selected Peg: (" + row + ", " + column + ")");
+    if (column >= maxColumn || column < 0 || row >= maxRow || row < 0)
+        return;
+    if (board[column][row] == null)
+        return;
+
+    var interval = 2
+    var peg_left = column - interval
+    var peg_right = column + interval
+    var peg_up = row - interval
+    var peg_down = row + interval
+    
+    if (lastSelectedPeg == null) {
+        if (peg.currentState == "PEG") {
+            lastSelectedPeg = peg;
+            lastSelectedPeg.currentState = "SELECTED";
+        }
+        //return;
+    }
+
+    if (peg.currentState == "PEG") {
+        console.log("Is peg")
+        lastSelectedPeg.currentState = "PEG";
+        lastSelectedPeg = peg;
+        lastSelectedPeg.currentState = "SELECTED";
+	
+	if (hightlight_peg_left != null) {
+	  if (hightlight_peg_left.currentState == "HIGHLIGHT") hightlight_peg_left.currentState = "HOLE";
+	}
+	if (hightlight_peg_right != null) {
+	  if (hightlight_peg_right.currentState == "HIGHLIGHT") hightlight_peg_right.currentState = "HOLE"; 
+	}
+	if (hightlight_peg_up != null) {
+	  if (hightlight_peg_up.currentState == "HIGHLIGHT") hightlight_peg_up.currentState = "HOLE"; 
+	}
+	if (hightlight_peg_down != null) {
+	  if (hightlight_peg_down.currentState == "HIGHLIGHT") hightlight_peg_down.currentState = "HOLE"; 
+	}
+    }
+    
+    if (peg.currentState == "SELECTED") {
+        console.log("Is selected")
+	if (peg_left >= 0 && peg_left < maxColumn) {
+	    var captured_peg_left = board[row][column - 1]
+	    hightlight_peg_left = board[row][column - 2]
+	    if (peg.currentState == "SELECTED" && 
+                captured_peg_left.currentState == "PEG" && 
+                hightlight_peg_left.currentState == "HOLE") { 
+		hightlight_peg_left.currentState = "HIGHLIGHT";
+	    }
+	}
+	
+	if (peg_right >= 0 && peg_right < maxColumn) {
+	    var captured_peg_right = board[row][column + 1]
+	    hightlight_peg_right = board[row][column + 2]
+	    if (peg.currentState == "SELECTED" && 
+                captured_peg_right.currentState == "PEG" && 
+                hightlight_peg_right.currentState == "HOLE") { 
+		hightlight_peg_right.currentState = "HIGHLIGHT";
+	    }
+	}
+	
+	if (peg_up >= 0 && peg_up < maxRow) {
+	  var captured_peg_up = board[row - 1][column]
+	  hightlight_peg_up = board[row - 2][column]
+	  if (peg.currentState == "SELECTED" && 
+              captured_peg_up.currentState== "PEG" && 
+              hightlight_peg_up.currentState == "HOLE") { 
+	      hightlight_peg_up.currentState = "HIGHLIGHT";
+	  }
+	}
+	
+	if (peg_down >= 0 && peg_down < maxRow) {
+	  var captured_peg_down = board[row + 1][column]
+	  hightlight_peg_down = board[row + 2][column]
+	  if (peg.currentState == "SELECTED" && 
+              captured_peg_down.currentState == "PEG" && 
+              hightlight_peg_down.currentState == "HOLE") {
+	      hightlight_peg_down.currentState = "HIGHLIGHT";
+	  }
+	}
+    }
+
+    if (peg.currentState == "HIGHLIGHT") {
+        console.log("Is highlighted")
+        capture(peg);
+        if (hightlight_peg_left != null) {
+	  if (hightlight_peg_left.currentState == "HIGHLIGHT") hightlight_peg_left.currentState = "HOLE"; 
+	}
+	if (hightlight_peg_right != null) {
+	  if (hightlight_peg_right.currentState == "HIGHLIGHT") hightlight_peg_right.currentState = "HOLE"; 
+	}
+	if (hightlight_peg_up != null) {
+	  if (hightlight_peg_up.currentState == "HIGHLIGHT") hightlight_peg_up.currentState = "HOLE"; 
+	}
+	if (hightlight_peg_down != null) {
+	  if (hightlight_peg_down.currentState == "HIGHLIGHT") hightlight_peg_down.currentState = "HOLE"; 
+	}
+    }
+}
+
 function capture(hightlightPeg) {
     var capturePeg = getCapturePeg(lastSelectedPeg, hightlightPeg);
     if (capturePeg != null) {
