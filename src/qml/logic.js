@@ -21,6 +21,39 @@ var pegsToWin = 1;
 var board;
 var selectedBoardStyle;
 
+var pegComponent
+function createPegOrHole(row, column, pegOrHole) {
+
+    if (pegComponent == null)
+        pegComponent = Qt.createComponent("Peg.qml");
+
+    if (pegComponent.status == Component.Ready) {
+        var dynamicObject;
+
+        if (pegOrHole == "hole") {
+            dynamicObject = pegComponent.createObject(gameCanvas, { "currentState": "HOLE" });
+	} else if (pegOrHole == "peg") {
+            dynamicObject = pegComponent.createObject(gameCanvas, { "currentState": "PEG" });
+	}
+
+        if (dynamicObject == null) {
+            console.log(peg.errorString());
+            return false;
+        }
+
+        dynamicObject.x = column * gameCanvas.pegSize;
+        dynamicObject.y = row * gameCanvas.pegSize;
+        dynamicObject.width = gameCanvas.pegSize;
+        dynamicObject.height = gameCanvas.pegSize;
+        
+        // console.log("(" + row + "," + column + ")" + "x:"  + dynamicObject.x + " y:" + dynamicObject.y)
+        board[row][column] = dynamicObject;
+    } else {
+        console.log(pegComponent.errorString());
+        return false;
+    }
+}
+
 function isEnglishBoardCoord(column, row) {
     /* English board
       0 1 2 3 4 5 6
