@@ -28,6 +28,39 @@ Item {
         anchors.fill: parent
     }
     
+    Rectangle {
+        id: gameMessage
+        width: parent.width / 2
+        height: parent.height / 4
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        color: "black"; 
+	radius: 10; 
+	opacity: 0.8
+        visible: isVisible()
+        z: 1
+
+        Text {
+            color: "white"
+            text: (main.state === "paused") ? i18n("Paused") : i18n("Click to start the game")
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            font.pixelSize: parent.width / 12
+        }
+        
+        MouseArea {
+            id: gameMessageMouseArea
+            anchors.fill: parent
+            onClicked: {
+	        if (main.state === "loaded")  { 
+		    startGame()
+		    time.visible = true
+		    gameMessage.z = -1
+		} 
+	    }
+        }
+    }
+    
     Item {
         id: timerItem
 
