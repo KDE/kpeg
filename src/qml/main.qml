@@ -16,6 +16,7 @@
 */
 
 import QtQuick 2.3
+import "logic.js" as Logic
 
 Item {
     id: main
@@ -31,6 +32,11 @@ Item {
         state = "running"
         timerItem.seconds = 0
         timerItem.enabled = true
+        
+        if (Logic.board != null) {
+	    Logic.destroyBoard();
+	}
+        Logic.startNewGame(boardStyle);
     }
     
     function pause(paused) {
@@ -147,12 +153,17 @@ Item {
         property int pegSize: 70
         
         color: "transparent"
+        height: Logic.maxRow * pegSize
+        width: Logic.maxColumn * pegSize
         anchors.centerIn: background
 
         MouseArea {
             id: gameCanvasMouseArea
             anchors.fill: gameCanvas
             z: 10
+            onClicked: {
+                Logic.clickPeg(mouse.x, mouse.y)
+            }
         }
     }
 }
