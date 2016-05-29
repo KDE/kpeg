@@ -71,3 +71,14 @@ function isEuroperanBoardCoord(column, row) {
 
     return false;
 }
+
+function destroyBoard() {
+    for (var i = 0; i < maxColumn; i++) {
+        for (var j = 0 ; j < maxRow; j++) {
+            if (board[i][j] != null) {
+                board[i][j].destroy();
+            }
+        }
+    }
+    delete board;
+}
