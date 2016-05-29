@@ -325,3 +325,20 @@ function getCapturePeg(pegBefore, pegAfter) {
         }
     }
 }
+
+function checkWin() {
+    var pegCounter = 0;
+    for (var row = 0; row < maxRow; row++) {
+        for (var column = 0; column < maxColumn; column++) {
+            var peg = board[row][column];
+            if (peg.currentState == "PEG" && peg.visible == true ) {
+                pegCounter++;
+            }
+        }
+    }
+    
+    if (pegsToWin == pegCounter) {
+        timer.enabled = false;
+        view.state = "WINNER_DIALOG";
+    }
+}
