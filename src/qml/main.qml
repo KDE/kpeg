@@ -28,6 +28,36 @@ Item {
         anchors.fill: parent
     }
     
+    Item {
+        id: timerItem
+
+        property int seconds: 0
+        property bool enabled: false
+
+        anchors.top: main.top
+        anchors.topMargin: 30
+        x: (parent.width - time.width) / 2
+
+        Timer {
+	    id: timer
+            interval: 1000
+	    running: true
+	    repeat: true
+            onTriggered: {
+                if (timerItem.enabled) timerItem.seconds++
+            }
+        }
+
+        Text {
+            id: time
+            text: i18n("Time: ") + getTime(timerItem.seconds)
+            color: "black"
+	    visible: false
+            font.pixelSize: 20
+            font.bold: true
+        }
+    }
+    
     Rectangle {
         id: gameCanvas
         property int pegSize: 70
