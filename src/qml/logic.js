@@ -154,3 +154,62 @@ function destroyBoard() {
     }
     delete board;
 }
+
+function capture(hightlightPeg) {
+    var capturePeg = getCapturePeg(lastSelectedPeg, hightlightPeg);
+    if (capturePeg != null) {
+        capturePeg.currentState = "HOLE";
+        lastSelectedPeg.currentState = "HOLE";
+        hightlightPeg.currentState = "PEG";
+        lastSelectedPeg = null;
+    }
+}
+
+function getCapturePeg(pegBefore, pegAfter) {
+    var beforeX;
+    var beforeY;
+    var afterX;
+    var afterY;
+
+    if (pegBefore.currentState == "SELECTED") {
+        if (pegAfter.currentState == "HIGHLIGHT") {
+            beforeX = pegBefore.x / gameCanvas.pegSize;
+            afterX = pegAfter.x / gameCanvas.pegSize;
+            beforeY = pegBefore.y / gameCanvas.pegSize;
+            afterY = pegAfter.y / gameCanvas.pegSize;
+
+            var targetDistance = 2;
+            if ((Math.abs(beforeX - afterX) != targetDistance) && (Math.abs(beforeY - afterY) != targetDistance))
+                return;
+
+            if (afterX != beforeX && afterY != beforeY)
+                return
+
+            var capturePegX;
+            var capturePegY;
+
+            if (afterX > beforeX) {
+                capturePegX = beforeX + 1;
+	    } else if (afterX < beforeX) {
+                capturePegX = afterX + 1;
+	    } else {
+                capturePegX = afterX;
+	    }
+
+            if (afterY > beforeY) {
+                capturePegY = beforeY + 1;
+	    } else if (afterY < beforeY) {
+                capturePegY = afterY + 1;
+	    } else {
+                capturePegY = afterY;
+	    }
+
+            var capturePeg = board[capturePegY][capturePegX];
+            if (capturePeg.currentState == "HOLE")
+                return;
+
+            // console.log("Captured peg: (" + capturePegX + ", " + capturePegY + ")");
+            return capturePeg;
+        }
+    }
+}
