@@ -326,7 +326,7 @@ function getCapturePeg(pegBefore, pegAfter) {
     }
 }
 
-function checkWin() {
+function checkGameWin() {
     var pegCounter = 0;
     for (var row = 0; row < maxRow; row++) {
         for (var column = 0; column < maxColumn; column++) {
