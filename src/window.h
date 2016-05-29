@@ -23,55 +23,39 @@
 #define WINDOW_H
 
 #include <KXmlGuiWindow>
-#include <KgDifficulty>
-#include <QLabel>
-#include <QPointer>
-#include <QUndoStack>
 
-class Board;
-class QStatusBar;
-class KGameClock;
 class KToggleAction;
+class GameView;
 
 
 class KpegMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    KpegMainWindow();
+
+    explicit KpegMainWindow(QWidget* parent = 0);
     ~KpegMainWindow();
 
+signals:
+    void load(QVariant boardStyle);
+    void pause(QVariant paused);
+    void start();
+
 private slots:
-    void newGame();
-    void restartGame();
     void configureSettings();
     void loadSettings();
-    void updateTimer(const QString&);
+    void loadGame();
+    void newGame();
     void pauseGame(bool paused);
-    void updateMoves(int count);
-    void levelChanged();
     void setSounds(bool enable);
     void showHighscores();
-    void undoMove();
-    void redoMove();
 
 private:
-    void startGame(int);
     void setupActions();
 
-    Board* m_board;
-    QPointer<QLabel> m_levelLabel = new QLabel;
-    QPointer<QLabel> m_movesLabel = new QLabel;
-    QPointer<QLabel> m_timeLabel = new QLabel;
-    QStatusBar *m_statusBar;
-    QUndoStack* m_moves;
-    KGameClock* m_gameClock;
+    GameView *m_view;
     KToggleAction* m_actionPause;
     KToggleAction* m_playSoundsAction;
-
-    int m_difficulty;
-    int m_algorithm;
-
 };
 
 #endif // WINDOW_H
