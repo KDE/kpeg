@@ -20,3 +20,25 @@ var maxRow = 7;
 var pegsToWin = 1;
 var board;
 var selectedBoardStyle;
+
+function isEnglishBoardCoord(column, row) {
+    /* English board
+      0 1 2 3 4 5 6
+    0     o o o
+    1     o o o
+    2 o o o o o o o
+    3 o o o x o o o
+    4 o o o o o o o
+    5     o o o
+    6     o o o */
+
+    if (row < 2 || row > 4) {
+        if (column  >= 2 && column <= 4)
+            return true;
+    }
+    if (row >= 2 && row <= 4 ) {
+        return true;
+    }
+
+    return false;
+}
