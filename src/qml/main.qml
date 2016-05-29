@@ -21,6 +21,57 @@ Item {
     id: main
     property string state
     property string boardStyle
+    
+    function loadGame(board) {
+        state = "loaded"
+	boardStyle = board
+    }
+    
+    function startGame() {
+        state = "running"
+        timerItem.seconds = 0
+        timerItem.enabled = true
+    }
+    
+    function pause(paused) {
+        state = (paused) ? "paused" : "running";
+        if (paused) {
+            timerItem.enabled = false
+            gameCanvas.enabled = false
+            gameMessage.visible = true
+            gameMessage.z = 1
+            
+        } else {
+            timerItem.enabled = true
+            gameCanvas.enabled = true
+            gameMessage.visible = false
+            gameMessage.z = -1
+        }
+    }
+    
+    function isVisible() {
+        return (main.state === "loaded" || main.state === "paused") 
+    }
+    
+    function getTime(time) {
+        var secondsPref = "";
+        var minutes;
+        var seconds;
+
+        if (time < 60) {
+            minutes = 0;
+            seconds = time;
+        } else {
+            minutes = Math.floor(time / 60);
+            seconds = Math.floor(time % 60);
+        }
+
+        if (seconds < 10) {
+            secondsPref = "0";
+        }
+
+        return minutes + ":" + secondsPref + seconds;
+    }
 
     CanvasItem {
         id: background
