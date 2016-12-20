@@ -1,7 +1,6 @@
 [KGameTheme]
 VersionFormat=1
 Name=Default
-Name[ast]=Por defeutu
 Name[ca]=Per defecte
 Name[ca@valencia]=Per defecte
 Name[cs]=Výchozí
@@ -24,7 +23,6 @@ Name[x-test]=xxDefaultxx
 Name[zh_CN]=默认
 Name[zh_TW]=預設
 Description=Default theme for KPeg
-Description[ast]=Tema por defeutu pa KPeg
 Description[ca]=Tema per defecte pel KPeg
 Description[ca@valencia]=Tema per defecte pel KPeg
 Description[cs]=Výchozí motiv pro KPeg
